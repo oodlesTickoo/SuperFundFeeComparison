@@ -305,6 +305,10 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         return target.split(search).join(replacement);
     };
 
+    
+    $('#demolist li').on('click', function(){
+    $('#datebox').val($(this).text());
+});
     $scope.resultWithSS = [0, 0, 0];
     $scope.resultWithoutSS = [0, 0, 0];
 
