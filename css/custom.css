@@ -989,6 +989,8 @@ ul.dropdown-menu {
     border-radius: 2px;
     padding: 0 25px 0 10px;
     font-size: 13px;
+        color: black;
+    border: 1px solid #ccc;
 }
 
 .bootstrap-select.btn-group .dropdown-menu li a {
