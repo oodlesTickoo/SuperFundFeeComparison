@@ -301,22 +301,30 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         { id: 298, name: "Anglican National ANS RIL High Growth", annualPercentageFee: 1.19, quarterlyReturn: -4.48, netReturn: -7.44 }
     ];
 
-/*$timeout(1);
-$('.selectpicker').selectpicker({
-  style: 'btn-info',
-  size: 10
-});
-link: function(scope, element, attrs, ctrl) {
-   $timeout(function() {      
-      element.selectpicker();
-   });
-}*/
-$timeout(function() {      
+    var fundA = $scope.fundsOb[0];
+
+    var fundB = $scope.fundsOb[0];
+
+    var tempFund = $scope.fundsOb[0];
+
+    $scope.fundNotFound = false;
+
+    /*$timeout(1);
     $('.selectpicker').selectpicker({
-  style: 'btn-info',
-  size: 10
-});
-   });
+      style: 'btn-info',
+      size: 10
+    });
+    link: function(scope, element, attrs, ctrl) {
+       $timeout(function() {      
+          element.selectpicker();
+       });
+    }*/
+    $timeout(function() {
+        $('.selectpicker').selectpicker({
+            style: 'btn-info',
+            size: 10
+        });
+    });
 
 
     String.prototype.replaceAll = function(search, replacement) {
@@ -332,7 +340,7 @@ $timeout(function() {
     $scope.resultWithoutSS = [0, 0, 0];
 
     var initDate = new Date();
-    initDate.setYear(1998);
+    initDate.setYear(1969);
     initDate.setMonth(6);
     initDate.setDate(1);
     $scope.dob = initDate;
@@ -469,17 +477,15 @@ $timeout(function() {
 
     $scope.fy = 2017;
 
-    $scope.cses = 80000;
-
-    $scope.thp = 45000;
-
-    $scope.maxTHP2 = 0;
-
     $scope.age = AgeCalculator.getAge($scope.dob, $scope.fy);
 
-    $scope.retirementAge = 65;
+    $scope.retirementAge = 67;
 
     $scope.annualSalary = 60000;
+
+    $scope.cc = 10000;
+
+    $scope.ncc = 10000;
 
     $scope.employerContributionLevel = 9.50;
 
@@ -487,7 +493,7 @@ $timeout(function() {
 
     $scope.superBalance = 100000;
 
-    $scope.rateOfReturn = 5.58;
+    // $scope.rateOfReturn = 5.58;
 
     $scope.wageIncrease = 3.50;
 
@@ -495,9 +501,9 @@ $timeout(function() {
 
     $scope.superTaxRate = 15;
 
-    $scope.administrationFee = 1;
+    $scope.administrationFee = 1.50;
 
-    $scope.investmentManagementFee = 1;
+    $scope.investmentManagementFee = 1.50;
 
     $scope.memberFee = 80;
 
@@ -505,20 +511,20 @@ $timeout(function() {
         annualSalarySlider = document.getElementById('annualSalarySlider'),
         employerContributionLevelSlider = document.getElementById('employerContributionLevelSlider'),
         superBalanceSlider = document.getElementById('superBalanceSlider'),
-        rateOfReturnSlider = document.getElementById('rateOfReturnSlider'),
+        // rateOfReturnSlider = document.getElementById('rateOfReturnSlider'),
         inflationSlider = document.getElementById('inflationSlider'),
         wageIncreaseSlider = document.getElementById('wageIncreaseSlider'),
         insurancePremiumSlider = document.getElementById('insurancePremiumSlider'),
         superTaxRateSlider = document.getElementById('superTaxRateSlider'),
         administrationFeeSlider = document.getElementById('administrationFeeSlider'),
         investmentManagementFeeSlider = document.getElementById('investmentManagementFeeSlider'),
-        memberFeeSlider = document.getElementById('memberFeeSlider');
-
-
+        memberFeeSlider = document.getElementById('memberFeeSlider'),
+        ccSlider = document.getElementById('ccSlider'),
+        nccSlider = document.getElementById('nccSlider');
 
 
     noUiSlider.create(retirementAgeSlider, {
-        start: [65],
+        start: [$scope.retirementAge],
         range: {
             'min': [60],
             'max': [75]
@@ -590,19 +596,19 @@ $timeout(function() {
         connect: 'lower'
     });
 
-    noUiSlider.create(rateOfReturnSlider, {
-        start: [$scope.rateOfReturn],
-        range: {
-            'min': [0],
-            'max': [50]
-        },
-        step: 0.5,
-        format: wNumb({
-            decimals: 2,
-            postfix: '%',
-        }),
-        connect: 'lower'
-    });
+    // noUiSlider.create(rateOfReturnSlider, {
+    //     start: [$scope.rateOfReturn],
+    //     range: {
+    //         'min': [0],
+    //         'max': [50]
+    //     },
+    //     step: 0.5,
+    //     format: wNumb({
+    //         decimals: 2,
+    //         postfix: '%',
+    //     }),
+    //     connect: 'lower'
+    // });
 
     noUiSlider.create(wageIncreaseSlider, {
         start: [$scope.wageIncrease],
@@ -638,7 +644,7 @@ $timeout(function() {
         start: [$scope.superTaxRate],
         range: {
             'min': [0],
-            'max': [10]
+            'max': [15]
         },
         step: 0.5,
         format: wNumb({
@@ -691,6 +697,38 @@ $timeout(function() {
         connect: 'lower'
     });
 
+    noUiSlider.create(ccSlider, {
+        start: [$scope.cc],
+        range: {
+            'min': [0],
+            'max': [30000]
+        },
+        step: 500,
+        format: wNumb({
+            decimals: 0,
+            prefix: '$',
+            thousand: ','
+
+        }),
+        connect: 'lower'
+    });
+
+    noUiSlider.create(nccSlider, {
+        start: [$scope.ncc],
+        range: {
+            'min': [0],
+            'max': [30000]
+        },
+        step: 500,
+        format: wNumb({
+            decimals: 0,
+            prefix: '$',
+            thousand: ','
+
+        }),
+        connect: 'lower'
+    });
+
 
 
     var ageInput = document.getElementById('ageInput'),
@@ -698,15 +736,16 @@ $timeout(function() {
         annualSalaryInput = document.getElementById('annualSalaryInput'),
         employerContributionLevelInput = document.getElementById('employerContributionLevelInput'),
         superBalanceInput = document.getElementById('superBalanceInput'),
-        rateOfReturnInput = document.getElementById('rateOfReturnInput'),
+        // rateOfReturnInput = document.getElementById('rateOfReturnInput'),
         inflationInput = document.getElementById('inflationInput'),
         wageIncreaseInput = document.getElementById('wageIncreaseInput'),
         insurancePremiumInput = document.getElementById('insurancePremiumInput'),
         superTaxRateInput = document.getElementById('superTaxRateInput'),
         administrationFeeInput = document.getElementById('administrationFeeInput'),
         investmentManagementFeeInput = document.getElementById('investmentManagementFeeInput'),
-        memberFeeInput = document.getElementById('memberFeeInput');
-
+        memberFeeInput = document.getElementById('memberFeeInput'),
+        ccInput = document.getElementById('ccInput'),
+        nccInput = document.getElementById('nccInput');
 
     retirementAgeSlider.noUiSlider.on('update', function(values, handle) {
         retirementAgeInput.value = values[handle];
@@ -728,10 +767,10 @@ $timeout(function() {
         $scope.superBalance = (values[handle]);
     });
 
-    rateOfReturnSlider.noUiSlider.on('update', function(values, handle) {
-        rateOfReturnInput.value = values[handle];
-        $scope.rateOfReturn = (values[handle]);
-    });
+    // rateOfReturnSlider.noUiSlider.on('update', function(values, handle) {
+    //     rateOfReturnInput.value = values[handle];
+    //     $scope.rateOfReturn = (values[handle]);
+    // });
 
     inflationSlider.noUiSlider.on('update', function(values, handle) {
         inflationInput.value = values[handle];
@@ -768,6 +807,16 @@ $timeout(function() {
         $scope.memberFee = (values[handle]);
     });
 
+    ccSlider.noUiSlider.on('update', function(values, handle) {
+        ccInput.value = values[handle];
+        $scope.cc = (values[handle]);
+    });
+
+    nccSlider.noUiSlider.on('update', function(values, handle) {
+        nccInput.value = values[handle];
+        $scope.ncc = (values[handle]);
+    });
+
     $scope.ageChange = function() {
         var dobText = document.getElementById("dobText");
         var dateString = dobText.value;
@@ -786,7 +835,8 @@ $timeout(function() {
             $scope.dob = initDate;
         }
         $scope.age = AgeCalculator.getAge($scope.dob, $scope.fy);
-        $scope.submitForm2(true);
+        changeCCLimit();
+        // $scope.submitForm2(true);
     }
 
     retirementAgeInput.addEventListener("change", function() {
@@ -805,9 +855,9 @@ $timeout(function() {
         superBalanceSlider.noUiSlider.set($scope.superBalance);
     });
 
-    rateOfReturnInput.addEventListener("change", function() {
-        rateOfReturnSlider.noUiSlider.set($scope.rateOfReturn);
-    });
+    // rateOfReturnInput.addEventListener("change", function() {
+    //     rateOfReturnSlider.noUiSlider.set($scope.rateOfReturn);
+    // });
 
     inflationInput.addEventListener("change", function() {
         inflationSlider.noUiSlider.set($scope.inflation);
@@ -837,81 +887,91 @@ $timeout(function() {
         memberFeeSlider.noUiSlider.set($scope.memberFee);
     });
 
+    ccInput.addEventListener("change", function() {
+        ccSlider.noUiSlider.set($scope.cc);
+    });
+
+    nccInput.addEventListener("change", function() {
+        nccSlider.noUiSlider.set($scope.ncc);
+    });
 
     retirementAgeSlider.noUiSlider.on('set', function(values, handle) {
         retirementAgeInput.value = values[handle];
         $scope.retirementAge = (values[handle]);
-        // calculateFinal();
+        calculateFinal();
         $timeout(0);
     });
 
     annualSalarySlider.noUiSlider.on('set', function(values, handle) {
         annualSalaryInput.value = values[handle];
         $scope.annualSalary = (values[handle]);
-        // calculateFinal();
+        changeCCLimit();
+        calculateFinal();
         $timeout(0);
     });
 
     employerContributionLevelSlider.noUiSlider.on('set', function(values, handle) {
         employerContributionLevelInput.value = values[handle];
         $scope.employerContributionLevel = (values[handle]);
-        // calculateFinal();
+        calculateFinal();
         $timeout(0);
     });
 
     superBalanceSlider.noUiSlider.on('set', function(values, handle) {
         superBalanceInput.value = values[handle];
         $scope.superBalance = (values[handle]);
-        // calculateFinal();
+        calculateFinal();
         $timeout(0);
     });
 
-    rateOfReturnSlider.noUiSlider.on('set', function(values, handle) {
-        rateOfReturnInput.value = values[handle];
-        $scope.rateOfReturn = (values[handle]);
-        // calculateFinal();
-        $timeout(0);
-    });
+    // rateOfReturnSlider.noUiSlider.on('set', function(values, handle) {
+    //     rateOfReturnInput.value = values[handle];
+    //     $scope.rateOfReturn = (values[handle]);
+    //     // calculateFinal();
+    //     $timeout(0);
+    // });
 
     inflationSlider.noUiSlider.on('set', function(values, handle) {
         inflationInput.value = values[handle];
         $scope.inflation = (values[handle]);
-        // calculateFinal();
+        calculateFinal();
         $timeout(0);
     });
 
     wageIncreaseSlider.noUiSlider.on('set', function(values, handle) {
         wageIncreaseInput.value = values[handle];
         $scope.wageIncrease = (values[handle]);
-        // calculateFinal();
+        calculateFinal();
         $timeout(0);
     });
 
     insurancePremiumSlider.noUiSlider.on('set', function(values, handle) {
         insurancePremiumInput.value = values[handle];
         $scope.insurancePremium = (values[handle]);
-        // calculateFinal();
+        calculateFinal();
         $timeout(0);
     });
 
     superTaxRateSlider.noUiSlider.on('set', function(values, handle) {
         superTaxRateInput.value = values[handle];
         $scope.superTaxRate = (values[handle]);
-        // calculateFinal();
+        calculateFinal();
         $timeout(0);
     });
 
     administrationFeeSlider.noUiSlider.on('set', function(values, handle) {
         administrationFeeInput.value = values[handle];
         $scope.administrationFee = (values[handle]);
-        // calculateFinal();
+        fundB.annualPercentageFee = Number($scope.administrationFee.replaceAll('%', '')),
+            calculateFinal();
         $timeout(0);
     });
 
     investmentManagementFeeSlider.noUiSlider.on('set', function(values, handle) {
         investmentManagementFeeInput.value = values[handle];
         $scope.investmentManagementFee = (values[handle]);
-        // calculateFinal();
+        fundB.investmentManagementFee = Number($scope.investmentManagementFee.replaceAll('%', '')),
+            calculateFinal();
         $timeout(0);
     });
 
@@ -921,6 +981,157 @@ $timeout(function() {
         // calculateFinal();
         $timeout(0);
     });
+
+    ccSlider.noUiSlider.on('set', function(values, handle) {
+        ccInput.value = values[handle];
+        $scope.cc = (values[handle]);
+        calculateFinal();
+        $timeout(0);
+    });
+
+    nccSlider.noUiSlider.on('set', function(values, handle) {
+        nccInput.value = values[handle];
+        $scope.ncc = (values[handle]);
+        calculateFinal();
+        $timeout(0);
+    });
+
+    $('.sp1').on('change', function() {
+        var selected = $('.sp1 option:selected').val();
+        fundA = $scope.fundsOb[selected];
+        calculateFinal();
+    });
+
+    $('.sp2').on('change', function() {
+        var selected = $('.sp2 option:selected').val();
+        fundB = $scope.fundsOb[selected];
+        tempFund = $scope.fundsOb[selected];
+        calculateFinal();
+    });
+
+    function changeCCLimit() {
+        var salary = Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', ''));
+        var empContributionPerc = Number($scope.employerContributionLevel.replaceAll('%', ''));
+        var empContribution = salary * (empContributionPerc / 100);
+        var ccLimit = $scope.age >= 49 ? 35000 - empContribution : 30000 - empContribution;
+        console.log(ccLimit);
+        ccSlider.noUiSlider.updateOptions({
+            range: {
+                'min': 0,
+                'max': ccLimit
+            }
+        });
+    }
+
+    function fundCalculation(fundReturn, fundFee) {
+
+        var annualSalary = Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', ''));
+
+        var superBalance = Number($scope.superBalance.replaceAll('$', '').replaceAll(',', ''));
+
+        var retirementAge = $scope.retirementAge;
+
+        var employerContributionLevel = Number($scope.employerContributionLevel.replaceAll('%', ''));
+
+        // var rateOfReturn = Number($scope.rateOfReturn.replaceAll('%',''));
+
+        var superTaxRate = Number($scope.superTaxRate.replaceAll('%', ''));
+
+        var inflation = Number($scope.inflation.replaceAll('%', ''));
+
+        var wageIncrease = Number($scope.wageIncrease.replaceAll('%', ''));
+
+        var insurancePremium = Number($scope.insurancePremium.replaceAll('$', '').replaceAll(',', ''));
+
+        var cc = Number($scope.cc.replaceAll('$', '').replaceAll(',', ''));
+
+        var ncc = Number($scope.ncc.replaceAll('$', '').replaceAll(',', ''));
+
+        var year = 0;
+
+        var yearLimit = $scope.retirementAge - $scope.age;
+
+        var cpi;
+
+        var adjustedSalary, netContribution, earning, taxation, drawdown, fAndI, balance, balanceCpi, paymentFactor, ageL;
+
+        var count = 0;
+
+        ageL = $scope.age;
+
+        var balanceArray = [superBalance];
+
+        var biArray = [];
+
+        for (count = 0; count <= yearLimit; count++) {
+            cpi = Math.pow(1 + (inflation / 100), year);
+            // console.log("cpi",cpi);
+            adjustedSalary = annualSalary * Math.pow(1 + (wageIncrease / 100), year);
+            // console.log("adj",adjustedSalary);
+            netContribution = (adjustedSalary * employerContributionLevel / 100 + cc) * (1 - superTaxRate / 100) + ncc;
+            // console.log("adj",netContribution);
+            earnings = balanceArray[count] * (Math.pow(1 + (fundReturn / 100), 0.5) - 1) + ((balanceArray[count] * Math.pow(1 + (fundReturn / 100), 0.5) + netContribution) * (Math.pow(1 + (fundReturn / 100), 0.5) - 1));
+            // console.log("adj",earnings);
+            // insurancePremium = 0;
+
+            fees = balanceArray[count] * (fundFee / 100);
+            // console.log("fee",fees);
+
+            tax = (earnings - insurancePremium - fees) * superTaxRate / 100;
+            // console.log("fee",tax);
+            balance = balanceArray[count] + netContribution + earnings - fees - insurancePremium - tax;
+
+            balanceCpi = 1 / cpi;
+
+            balanceIndexed = balance * balanceCpi;
+
+            balanceArray.push(balance);
+
+            biArray.push(balanceIndexed);
+
+            year++;
+
+        }
+
+        console.log(biArray);
+
+        return biArray.slice(-1)[0];
+    }
+
+    $scope.$watch('fundNotFound', function() {
+        if ($scope.fundNotFound) {
+            console.log("here");
+            fundB = {
+                name: "your fund",
+                annualPercentageFee: Number($scope.administrationFee.replaceAll('%', '')),
+                netReturn: Number($scope.investmentManagementFee.replaceAll('%', ''))
+            };
+        } else {
+            fundB = tempFund;
+        }
+        calculateFinal();
+    });
+
+    function calculateFinal() {
+
+        console.log(fundB);
+
+        var resultFundOne = fundCalculation(fundA.annualPercentageFee, fundA.netReturn);
+
+        var resultFundTwo = fundCalculation(fundB.annualPercentageFee, fundB.netReturn);
+
+        var savings = Math.abs(resultFundTwo - resultFundOne);
+
+        ChartServiceHc.createChart(Number(resultFundOne.toFixed(2)), Number(resultFundTwo.toFixed(2)), Number(savings.toFixed(2)));
+        DonutChartServiceHc.createChart(Number(resultFundOne.toFixed(2)), Number(resultFundTwo.toFixed(2)), Number(savings.toFixed(2)));
+
+    }
+
+    calculateFinal();
+
+
+
+
 
     // document.getElementById("download").addEventListener("click", function() {
     //     var toggleNeeded = false;

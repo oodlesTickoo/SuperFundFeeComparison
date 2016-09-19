@@ -116,6 +116,36 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row second-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Concessional Contribution
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <input type="text" onClick="this.select();" class="form-control" id="ccInput" name="ccInput" ng-model="cc">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <div id="ccSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Non Concessional Contribution
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="nccInput" name="nccInput" ng-model="ncc">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="nccSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                         <div class="row title-div">
                             <span class="number-wrapper">2</span>
@@ -140,17 +170,17 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 form-heading">
-                                    Rate of Return
+                                    Super Tax Rate
                                     <div class="row">
                                         <div class="col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <!-- <label for="ageInput">Your Age</label> -->
-                                                <input type="text" onClick="this.select();" class="form-control" id="rateOfReturnInput" name="rateOfReturnInput" ng-model="rateOfReturn">
+                                                <input type="text" onClick="this.select();" class="form-control" id="superTaxRateInput" name="superTaxRateInput" ng-model="superTaxRate">
                                             </div>
                                         </div>
                                         <div class="col-xs-8 col-sm-8 form-group slider-common">
                                             <!-- <label></label> -->
-                                            <div id="rateOfReturnSlider" style="margin-top:8px;"></div>
+                                            <div id="superTaxRateSlider" style="margin-top:8px;"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -203,21 +233,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 form-heading">
-                                    Super Tax Rate
-                                    <div class="row">
-                                        <div class="col-xs-4 col-sm-4">
-                                            <div class="form-group">
-                                                <!-- <label for="ageInput">Your Age</label> -->
-                                                <input type="text" onClick="this.select();" class="form-control" id="superTaxRateInput" name="superTaxRateInput" ng-model="superTaxRate">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
-                                            <!-- <label></label> -->
-                                            <div id="superTaxRateSlider" style="margin-top:8px;"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </form>
                         <div class="row title-div">
@@ -228,15 +244,15 @@
                         <form name="ttrForm" class="ttr-form" novalidate ng-submit="submitForm(ttrForm.$valid)">
                             <div class="row first-row-mobile" id="datebox">
                                 <div class="col-lg-6 col-sm-6 col-md-6">
-                                    <h2 class="bold">Scrollable Menu</h2>
-                                    <select class="selectpicker">
-                                        <option ng-repeat="x in fundsOb">{{x.name}}</option>
+                                    <h3 class="bold">Fund A</h2>
+                                    <select name="sp1" class="selectpicker sp1" id="sp1">
+                                        <option ng-repeat="x in fundsOb" value="{{x.id}}">{{x.name}}</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-md-6">
-                                    <h2 class="bold">Scrollable Menu</h2>
-                                    <select class="selectpicker">
-                                        <option ng-repeat="x in fundsOb">{{x.name}}</option>
+                                    <h3 class="bold">Fund B</h2>
+                                    <select name="sp2" class="selectpicker sp2">
+                                        <option ng-repeat="x in fundsOb" value="{{x.id}}">{{x.name}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -245,15 +261,15 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             Fund not listed?
-                                            <button class="option-l-btn btn btn-primary " ng-click="genderOption = true" ng-disabled="genderOption">Yes</button>
-                                            <button class="option-r-btn btn btn-primary " ng-click="genderOption = false" ng-disabled="!genderOption">No</button>
+                                            <button class="option-l-btn btn btn-primary " ng-click="fundNotFound = true" ng-disabled="fundNotFound">Yes</button>
+                                            <button class="option-r-btn btn btn-primary " ng-click="fundNotFound = false" ng-disabled="!fundNotFound">No</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row second-row-mobile">
+                            <div class="row second-row-mobile" ng-show="fundNotFound">
                                 <div class="col-xs-12 col-sm-6 form-heading">
-                                    Administration Fee
+                                    Annual Percentage Fee
                                     <div class="row">
                                         <div class="col-xs-4 col-sm-4">
                                             <div class="form-group">
@@ -268,7 +284,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 form-heading">
-                                    Investment Management Fee
+                                    Net Return 
                                     <div class="row">
                                         <div class="col-xs-4 col-sm-4">
                                             <div class="form-group">
@@ -283,18 +299,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row second-row-mobile">
+                            <div class="row second-row-mobile" ng-show="false">
                                 <div class="col-xs-12 col-sm-6 form-heading">
                                     Member Fee Per annum
                                     <div class="row">
                                         <div class="col-xs-4 col-sm-4">
                                             <div class="form-group">
-                                                <!-- <label for="ageInput">Your Age</label> -->
                                                 <input type="text" onClick="this.select();" class="form-control" id="memberFeeInput" name="memberFeeInput" ng-model="memberFee">
                                             </div>
                                         </div>
                                         <div class="col-xs-8 col-sm-8 form-group slider-common">
-                                            <!-- <label></label> -->
                                             <div id="memberFeeSlider" style="margin-top:8px;"></div>
                                         </div>
                                     </div>

@@ -1043,6 +1043,6 @@ a:focus{
   outline: none;
   background-color: white;
 }
-..open>.dropdown-toggle.btn-info:hover{
+.open>.dropdown-toggle.btn-info:hover{
   color:black!important;
 }

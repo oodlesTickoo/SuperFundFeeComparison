@@ -1,18 +1,18 @@
 app.service('DonutChartServiceHc',function(){
-  this.createChart = function(thpWithoutSS,thpWithSS,taxSaving,optimisedSS){
+  this.createChart = function(fundA,fundB,saving){
 
-    var total = thpWithoutSS + thpWithSS + taxSaving +optimisedSS;
+    var total = fundA + fundB + saving;
 
-    var thpWithSSPercentage = (thpWithSS/total) * 100;
+    var fundAPercentage = (fundA/total) * 100;
     
-    var thpWithoutSSPercentage = thpWithoutSS/total * 100; 
+    var fundBPercentage = fundB/total * 100; 
     
-    var taxSavingPercentage = taxSaving/total * 100;
+    var savingPercentage = saving/total * 100;
 
-    var SSPercentage = optimisedSS/total * 100;
+    // var SSPercentage = optimisedSS/total * 100;
 
-    var length = $("#highcharts-6").width;
-    console.log(length);
+    // var length = $("#highcharts-6").width;
+    // console.log(length);
 
     $('#donutContainer').highcharts({
         chart: {
@@ -134,7 +134,7 @@ app.service('DonutChartServiceHc',function(){
                                      y:(chart.chartHeight * 0.4),
                                      // chart.plotTop  + (chart.plotHeight * 0.4)
                                      x:(chart.chartWidth  * 0.38),
-                                    text:'<span style="font-weight:700; font-size:14px;">'  + 'Salary Sacrifice Optimisation' 
+                                    text:'<span style="font-weight:700; font-size:14px;">'  + 'Super Fund Comparison' 
                                     + '</span>'
                                 });
                     }
@@ -150,10 +150,9 @@ app.service('DonutChartServiceHc',function(){
             // outerSize:'60%',
             colorByPoint:true,
             data: [
-                ['THP Without Salary Sacrifice', thpWithoutSSPercentage],
-                ['THP With Salary Sacrifice', thpWithSSPercentage],  
-                ['Tax Savings',taxSavingPercentage],
-                ['Salary Sacrifice', SSPercentage]
+                ['Discounted Super Balance Our Fund', fundAPercentage],
+                ['Discounted Super Balance Fund B', fundBPercentage],  
+                ['Total Saving',savingPercentage]
             ]
         }]
     },function (chart) {
@@ -181,7 +180,7 @@ app.service('DonutChartServiceHc',function(){
                                      y:(chart.chartHeight * 0.4),
                                      // chart.plotTop  + (chart.plotHeight * 0.4)
                                      x:(chart.chartWidth  * 0.38),
-                                    text:'<span style="font-weight:700; font-size:14px;">'  + 'Salary Sacrifice Optimisation' 
+                                    text:'<span style="font-weight:700; font-size:14px;">'  + 'Super Fund Comparison' 
                                     + '</span>'
                                 });
 
