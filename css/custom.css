@@ -477,19 +477,27 @@ input[type=number] {
     margin-bottom: 5px;
 }
 .res-value{
-    font-size: 16px;
-        /*text-align: right;*/
+    font-size: 18px;
         padding-left: 0;
-        padding-right: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
 }
 .res-value2{
-  font-size: 13px;
+  font-size: 14px;
         /*text-align: right;*/
         padding-left: 0;
         padding-right: 5px;
-        /*padding-top:8px;*/
+        padding-top:5px;
         /*padding-bottom: 8px;*/
         text-transform: capitalize;
+        font-weight: normal;
+}
+.final-head{
+  padding-top: 7px;
+    padding-bottom: 0px;
+}
+.dd{
+      font-size: 25px;
 }
 .dsb{
   padding : 5px 0px;
@@ -501,21 +509,30 @@ input[type=number] {
     margin-bottom: -8px;
 }
 .res-head{
-    /*padding-top: 3px;*/
-    /*padding-bottom: 3px;*/
+        padding-top: 7px;
+    padding-bottom: 0px;
     padding-left: 0;
     padding-right: 5px;
+        font-size: 14px;
+    text-transform: capitalize;
+    font-weight: normal;
 }
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
 .res-1 strong{
-    font-size: 16px;
+    font-size: 18px;
     text-transform: capitalize;
+    font-weight: normal;
 }
 .res-2 strong{
-    font-size: 14px;
+    font-size: 18px;
     text-transform: capitalize;
+    font-weight: normal;
+}
+
+.res-1 .divider{
+  border-top: 1px solid #a3a3a3!important;
 }
 #container .highcharts-container{
     margin-top:0px;
@@ -932,9 +949,9 @@ float:right;
   color:white;
 }
 
-.dropdown-menu {
+/*.dropdown-menu {
       width: 100%;
-    }
+    }*/
 
     .scrollable-menu {
       height: auto;
@@ -1012,8 +1029,9 @@ ul.dropdown-menu {
       color: black;
   }   
 
-  .dropdown-menu {
+   .dropdown-menu ul{
      width: 256px; 
+     padding: 0 !important; 
 }
 .bootstrap-select.btn-group .dropdown-menu{
   min-width: 0;
@@ -1035,9 +1053,9 @@ li{
     font-size: 13px;
     color: black;
 }
-ul.dropdown-menu {
+/*ul.dropdown-menu {
      padding: 0 !important; 
-}
+}*/
 .scrollable-menu{
 width:256px;
 padding: 0!important;
