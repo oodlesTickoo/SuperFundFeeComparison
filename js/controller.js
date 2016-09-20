@@ -1239,7 +1239,14 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
         $scope.resultFundTwo = fundCalculation($scope.fundB.annualPercentageFee, $scope.fundB.netReturn);
 
-        $scope.savings = Math.abs($scope.resultFundTwo - $scope.resultFundOne);
+        if($scope.resultFundTwo>$scope.resultFundOne){
+            $scope.savings=$scope.resultFundTwo - $scope.resultFundOne;
+            $scope.savingsName= $scope.fundB.name;
+        }else{
+            $scope.savings= $scope.resultFundOne- $scope.resultFundTwo;
+            $scope.savingsName= $scope.fundA.name;
+
+        }
 
         ChartServiceHc.createChart(Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)));
         DonutChartServiceHc.createChart(Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)));
