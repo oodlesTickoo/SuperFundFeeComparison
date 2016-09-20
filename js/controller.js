@@ -483,7 +483,9 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
     // $scope.age = 42;
 
-    $scope.fy = 2017;
+    var dt = new Date();
+
+    $scope.fy = dt.getFullYear();
 
     $scope.age = AgeCalculator.getAge($scope.dob, $scope.fy);
 
