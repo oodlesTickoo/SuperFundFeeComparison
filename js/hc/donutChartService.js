@@ -150,7 +150,7 @@ app.service('DonutChartServiceHc',function(){
             // outerSize:'60%',
             colorByPoint:true,
             data: [
-                ['Discounted Super Balance Our Fund', fundAPercentage],
+                ['Discounted Super Balance Fund A', fundAPercentage],
                 ['Discounted Super Balance Fund B', fundBPercentage],  
                 ['Total Saving',savingPercentage]
             ]

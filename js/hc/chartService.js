@@ -59,7 +59,7 @@ app.service('ChartServiceHc',function(){
             // name: 'Brands',
             colorByPoint: true,
             data: [{
-                name: 'Discounted Super Balance Our Fund',
+                name: 'Discounted Super Balance Fund A',
                 y: fundA,
                 // drilldown: 'Microsoft Internet Explorer'
             }, {

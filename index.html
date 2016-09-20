@@ -244,13 +244,13 @@
                         <form name="ttrForm" class="ttr-form" novalidate ng-submit="submitForm(ttrForm.$valid)">
                             <div class="row first-row-mobile" id="datebox">
                                 <div class="col-lg-6 col-sm-6 col-md-6">
-                                    <h3 class="bold">Fund A</h2>
+                                    <h4 class="bold">Fund A</h2>
                                     <select name="sp1" class="selectpicker sp1" id="sp1">
                                         <option ng-repeat="x in fundsOb" value="{{x.id}}">{{x.name}}</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-md-6">
-                                    <h3 class="bold">Fund B</h2>
+                                    <h4 class="bold">Fund B</h2>
                                     <select name="sp2" class="selectpicker sp2">
                                         <option ng-repeat="x in fundsOb" value="{{x.id}}">{{x.name}}</option>
                                     </select>
@@ -260,56 +260,108 @@
                                 <div class="col-xs-12 col-sm-6 form-heading">
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            Fund not listed?
-                                            <button class="option-l-btn btn btn-primary " ng-click="fundNotFound = true" ng-disabled="fundNotFound">Yes</button>
-                                            <button class="option-r-btn btn btn-primary " ng-click="fundNotFound = false" ng-disabled="!fundNotFound">No</button>
+                                            Specify another Fund A?
+                                            <button class="option-l-btn btn btn-primary " ng-click="fundNotFoundA = true" ng-disabled="fundNotFoundA">Yes</button>
+                                            <button class="option-r-btn btn btn-primary " ng-click="fundNotFoundA= false" ng-disabled="!fundNotFoundA">No</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row second-row-mobile" ng-show="fundNotFound">
+                            <div class="row second-row-mobile" ng-show="fundNotFoundA">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Fund Name
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <input type="text" onClick="this.select();" class="form-control formC2" id="fundNameA" name="fundNameA" ng-model="fundNameA" placeholder="Your Fund A">  
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-xs-12 col-sm-6 form-heading">
                                     Annual Percentage Fee
                                     <div class="row">
                                         <div class="col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <!-- <label for="ageInput">Your Age</label> -->
-                                                <input type="text" onClick="this.select();" class="form-control" id="administrationFeeInput" name="administrationFeeInput" ng-model="administrationFee">
+                                                <input type="text" onClick="this.select();" class="form-control" id="annualFeeAInput" name="annualFeeAInput" ng-model="annualFeeA">
                                             </div>
                                         </div>
                                         <div class="col-xs-8 col-sm-8 form-group slider-common">
                                             <!-- <label></label> -->
-                                            <div id="administrationFeeSlider" style="margin-top:8px;"></div>
+                                            <div id="annualFeeASlider" style="margin-top:8px;"></div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row second-row-mobile" ng-show="fundNotFoundA">
                                 <div class="col-xs-12 col-sm-6 form-heading">
                                     Net Return 
                                     <div class="row">
                                         <div class="col-xs-4 col-sm-4">
                                             <div class="form-group">
                                                 <!-- <label for="ageInput">Your Age</label> -->
-                                                <input type="text" onClick="this.select();" class="form-control" id="investmentManagementFeeInput" name="investmentManagementFeeInput" ng-model="investmentManagementFee">
+                                                <input type="text" onClick="this.select();" class="form-control" id="netReturnAInput" name="netReturnAInput" ng-model="netReturnA">
                                             </div>
                                         </div>
                                         <div class="col-xs-8 col-sm-8 form-group slider-common">
                                             <!-- <label></label> -->
-                                            <div id="investmentManagementFeeSlider" style="margin-top:8px;"></div>
+                                            <div id="netReturnASlider" style="margin-top:8px;"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row second-row-mobile" ng-show="false">
+                            <div class="row second-row-mobile">
                                 <div class="col-xs-12 col-sm-6 form-heading">
-                                    Member Fee Per annum
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            Specify another Fund B?
+                                            <button class="option-l-btn btn btn-primary " ng-click="fundNotFoundB = true" ng-disabled="fundNotFoundB">Yes</button>
+                                            <button class="option-r-btn btn btn-primary " ng-click="fundNotFoundB= false" ng-disabled="!fundNotFoundB">No</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile" ng-show="fundNotFoundB">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Fund Name
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <input type="text" onClick="this.select();" class="form-control formC2" id="fundNameB" name="fundNameB" ng-model="fundNameB" placeholder="Your Fund B">  
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Annual Percentage Fee
                                     <div class="row">
                                         <div class="col-xs-4 col-sm-4">
                                             <div class="form-group">
-                                                <input type="text" onClick="this.select();" class="form-control" id="memberFeeInput" name="memberFeeInput" ng-model="memberFee">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="annualFeeBInput" name="annualFeeBInput" ng-model="annualFeeB">
                                             </div>
                                         </div>
                                         <div class="col-xs-8 col-sm-8 form-group slider-common">
-                                            <div id="memberFeeSlider" style="margin-top:8px;"></div>
+                                            <!-- <label></label> -->
+                                            <div id="annualFeeBSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile" ng-show="fundNotFoundB">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Net Return 
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="netReturnBInput" name="netReturnBInput" ng-model="netReturnB">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="netReturnBSlider" style="margin-top:8px;"></div>
                                         </div>
                                     </div>
                                 </div>

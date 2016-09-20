@@ -305,9 +305,17 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
     var fundB = $scope.fundsOb[0];
 
-    var tempFund = $scope.fundsOb[0];
+    var tempFundA = $scope.fundsOb[0];
 
-    $scope.fundNotFound = false;
+    var tempFundB = $scope.fundsOb[0];
+
+    $scope.fundNotFoundA = false;
+
+    $scope.fundNotFoundB = false; 
+
+    $scope.fundNameA;
+
+    $scope.fundNameB;   
 
     /*$timeout(1);
     $('.selectpicker').selectpicker({
@@ -501,9 +509,13 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
     $scope.superTaxRate = 15;
 
-    $scope.administrationFee = 1.50;
+    $scope.annualFeeA = 1.50;
 
-    $scope.investmentManagementFee = 1.50;
+    $scope.netReturnA = 1.50;
+
+        $scope.annualFeeB = 1.50;
+
+    $scope.netReturnB = 1.50;
 
     $scope.memberFee = 80;
 
@@ -516,9 +528,11 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         wageIncreaseSlider = document.getElementById('wageIncreaseSlider'),
         insurancePremiumSlider = document.getElementById('insurancePremiumSlider'),
         superTaxRateSlider = document.getElementById('superTaxRateSlider'),
-        administrationFeeSlider = document.getElementById('administrationFeeSlider'),
-        investmentManagementFeeSlider = document.getElementById('investmentManagementFeeSlider'),
-        memberFeeSlider = document.getElementById('memberFeeSlider'),
+        annualFeeASlider = document.getElementById('annualFeeASlider'),
+        netReturnASlider = document.getElementById('netReturnASlider'),
+        annualFeeBSlider = document.getElementById('annualFeeBSlider'),
+        netReturnBSlider = document.getElementById('netReturnBSlider'),
+        // memberFeeSlider = document.getElementById('memberFeeSlider'),
         ccSlider = document.getElementById('ccSlider'),
         nccSlider = document.getElementById('nccSlider');
 
@@ -654,8 +668,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         connect: 'lower'
     });
 
-    noUiSlider.create(administrationFeeSlider, {
-        start: [$scope.administrationFee],
+    noUiSlider.create(annualFeeASlider, {
+        start: [$scope.annualFeeA],
         range: {
             'min': [0],
             'max': [10]
@@ -668,8 +682,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         connect: 'lower'
     });
 
-    noUiSlider.create(investmentManagementFeeSlider, {
-        start: [$scope.investmentManagementFee],
+    noUiSlider.create(netReturnASlider, {
+        start: [$scope.netReturnA],
         range: {
             'min': [0],
             'max': [10]
@@ -682,20 +696,48 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         connect: 'lower'
     });
 
-    noUiSlider.create(memberFeeSlider, {
-        start: [$scope.memberFee],
+        noUiSlider.create(annualFeeBSlider, {
+        start: [$scope.annualFeeB],
         range: {
             'min': [0],
-            'max': [4000]
+            'max': [10]
         },
-        step: 100,
+        step: 0.5,
         format: wNumb({
-            decimals: 0,
-            prefix: '$',
-            thousand: ','
+            decimals: 2,
+            postfix: '%',
         }),
         connect: 'lower'
     });
+
+    noUiSlider.create(netReturnBSlider, {
+        start: [$scope.netReturnB],
+        range: {
+            'min': [0],
+            'max': [10]
+        },
+        step: 0.5,
+        format: wNumb({
+            decimals: 2,
+            postfix: '%',
+        }),
+        connect: 'lower'
+    });
+
+    // noUiSlider.create(memberFeeSlider, {
+    //     start: [$scope.memberFee],
+    //     range: {
+    //         'min': [0],
+    //         'max': [4000]
+    //     },
+    //     step: 100,
+    //     format: wNumb({
+    //         decimals: 0,
+    //         prefix: '$',
+    //         thousand: ','
+    //     }),
+    //     connect: 'lower'
+    // });
 
     noUiSlider.create(ccSlider, {
         start: [$scope.cc],
@@ -741,9 +783,11 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         wageIncreaseInput = document.getElementById('wageIncreaseInput'),
         insurancePremiumInput = document.getElementById('insurancePremiumInput'),
         superTaxRateInput = document.getElementById('superTaxRateInput'),
-        administrationFeeInput = document.getElementById('administrationFeeInput'),
-        investmentManagementFeeInput = document.getElementById('investmentManagementFeeInput'),
-        memberFeeInput = document.getElementById('memberFeeInput'),
+        annualFeeAInput = document.getElementById('annualFeeAInput'),
+        netReturnAInput = document.getElementById('netReturnAInput'),
+                annualFeeBInput = document.getElementById('annualFeeBInput'),
+        netReturnBInput = document.getElementById('netReturnBInput'),
+        // memberFeeInput = document.getElementById('memberFeeInput'),
         ccInput = document.getElementById('ccInput'),
         nccInput = document.getElementById('nccInput');
 
@@ -792,20 +836,30 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         $scope.superTaxRate = (values[handle]);
     });
 
-    administrationFeeSlider.noUiSlider.on('update', function(values, handle) {
-        administrationFeeInput.value = values[handle];
-        $scope.administrationFee = (values[handle]);
+    annualFeeASlider.noUiSlider.on('update', function(values, handle) {
+        annualFeeAInput.value = values[handle];
+        $scope.annualFeeA = (values[handle]);
     });
 
-    investmentManagementFeeSlider.noUiSlider.on('update', function(values, handle) {
-        investmentManagementFeeInput.value = values[handle];
-        $scope.investmentManagementFee = (values[handle]);
+    netReturnASlider.noUiSlider.on('update', function(values, handle) {
+        netReturnAInput.value = values[handle];
+        $scope.netReturnA = (values[handle]);
     });
 
-    memberFeeSlider.noUiSlider.on('update', function(values, handle) {
-        memberFeeInput.value = values[handle];
-        $scope.memberFee = (values[handle]);
+        annualFeeBSlider.noUiSlider.on('update', function(values, handle) {
+        annualFeeBInput.value = values[handle];
+        $scope.annualFeeB = (values[handle]);
     });
+
+    netReturnBSlider.noUiSlider.on('update', function(values, handle) {
+        netReturnBInput.value = values[handle];
+        $scope.netReturnB = (values[handle]);
+    });
+
+    // memberFeeSlider.noUiSlider.on('update', function(values, handle) {
+    //     memberFeeInput.value = values[handle];
+    //     $scope.memberFee = (values[handle]);
+    // });
 
     ccSlider.noUiSlider.on('update', function(values, handle) {
         ccInput.value = values[handle];
@@ -875,17 +929,25 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         superTaxRateSlider.noUiSlider.set($scope.superTaxRate);
     });
 
-    administrationFeeInput.addEventListener("change", function() {
-        administrationFeeSlider.noUiSlider.set($scope.administrationFee);
+    annualFeeAInput.addEventListener("change", function() {
+        annualFeeASlider.noUiSlider.set($scope.annualFeeA);
     });
 
-    investmentManagementFeeInput.addEventListener("change", function() {
-        investmentManagementFeeSlider.noUiSlider.set($scope.investmentManagementFee);
+    netReturnAInput.addEventListener("change", function() {
+        netReturnASlider.noUiSlider.set($scope.netReturnA);
     });
 
-    memberFeeInput.addEventListener("change", function() {
-        memberFeeSlider.noUiSlider.set($scope.memberFee);
+        annualFeeBInput.addEventListener("change", function() {
+        annualFeeBSlider.noUiSlider.set($scope.annualFeeB);
     });
+
+    netReturnBInput.addEventListener("change", function() {
+        netReturnBSlider.noUiSlider.set($scope.netReturnB);
+    });
+
+    // memberFeeInput.addEventListener("change", function() {
+    //     memberFeeSlider.noUiSlider.set($scope.memberFee);
+    // });
 
     ccInput.addEventListener("change", function() {
         ccSlider.noUiSlider.set($scope.cc);
@@ -959,28 +1021,44 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         $timeout(0);
     });
 
-    administrationFeeSlider.noUiSlider.on('set', function(values, handle) {
-        administrationFeeInput.value = values[handle];
-        $scope.administrationFee = (values[handle]);
-        fundB.annualPercentageFee = Number($scope.administrationFee.replaceAll('%', '')),
+    annualFeeASlider.noUiSlider.on('set', function(values, handle) {
+        annualFeeAInput.value = values[handle];
+        $scope.annualFeeA = (values[handle]);
+        fundA.annualPercentageFee = Number($scope.annualFeeA.replaceAll('%', '')),
             calculateFinal();
         $timeout(0);
     });
 
-    investmentManagementFeeSlider.noUiSlider.on('set', function(values, handle) {
-        investmentManagementFeeInput.value = values[handle];
-        $scope.investmentManagementFee = (values[handle]);
-        fundB.investmentManagementFee = Number($scope.investmentManagementFee.replaceAll('%', '')),
+    netReturnASlider.noUiSlider.on('set', function(values, handle) {
+        netReturnAInput.value = values[handle];
+        $scope.netReturnA = (values[handle]);
+        fundA.netReturn = Number($scope.netReturnA.replaceAll('%', '')),
             calculateFinal();
         $timeout(0);
     });
 
-    memberFeeSlider.noUiSlider.on('set', function(values, handle) {
-        memberFeeInput.value = values[handle];
-        $scope.memberFee = (values[handle]);
-        // calculateFinal();
+        annualFeeBSlider.noUiSlider.on('set', function(values, handle) {
+        annualFeeBInput.value = values[handle];
+        $scope.annualFeeB = (values[handle]);
+        fundB.annualPercentageFee = Number($scope.annualFeeB.replaceAll('%', '')),
+            calculateFinal();
         $timeout(0);
     });
+
+    netReturnBSlider.noUiSlider.on('set', function(values, handle) {
+        netReturnBInput.value = values[handle];
+        $scope.netReturnB = (values[handle]);
+        fundB.netReturn = Number($scope.netReturnB.replaceAll('%', '')),
+            calculateFinal();
+        $timeout(0);
+    });
+
+    // memberFeeSlider.noUiSlider.on('set', function(values, handle) {
+    //     memberFeeInput.value = values[handle];
+    //     $scope.memberFee = (values[handle]);
+    //     // calculateFinal();
+    //     $timeout(0);
+    // });
 
     ccSlider.noUiSlider.on('set', function(values, handle) {
         ccInput.value = values[handle];
@@ -996,16 +1074,33 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         $timeout(0);
     });
 
+    // var nameA = 
+
+    document.getElementById('fundNameA').addEventListener("change",function(){
+        fundA.name = document.getElementById('fundNameA').value;
+        calculateFinal();
+    });
+
+    document.getElementById('fundNameB').addEventListener("change",function(){
+        fundB.name = document.getElementById('fundNameB').value;
+        calculateFinal();
+    });
+
+    // $scope.fundNameChangeA = function(){
+
+    // }
+
     $('.sp1').on('change', function() {
         var selected = $('.sp1 option:selected').val();
         fundA = $scope.fundsOb[selected];
+        tempFundA = $scope.fundsOb[selected];
         calculateFinal();
     });
 
     $('.sp2').on('change', function() {
         var selected = $('.sp2 option:selected').val();
         fundB = $scope.fundsOb[selected];
-        tempFund = $scope.fundsOb[selected];
+        tempFundB = $scope.fundsOb[selected];
         calculateFinal();
     });
 
@@ -1098,21 +1193,37 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         return biArray.slice(-1)[0];
     }
 
-    $scope.$watch('fundNotFound', function() {
-        if ($scope.fundNotFound) {
-            console.log("here");
-            fundB = {
-                name: "your fund",
-                annualPercentageFee: Number($scope.administrationFee.replaceAll('%', '')),
-                netReturn: Number($scope.investmentManagementFee.replaceAll('%', ''))
+    $scope.$watch('fundNotFoundA', function() {
+        if ($scope.fundNotFoundA) {
+            // console.log("here");
+            fundA = {
+                name: $scope.fundNameA,
+                annualPercentageFee: Number($scope.annualFeeA.replaceAll('%', '')),
+                netReturn: Number($scope.netReturnA.replaceAll('%', ''))
             };
         } else {
-            fundB = tempFund;
+            fundA = tempFundA;
+        }
+        calculateFinal();
+    });
+
+        $scope.$watch('fundNotFoundB', function() {
+        if ($scope.fundNotFoundB) {
+            // console.log("here B");
+            fundB = {
+                name: $scope.fundNameB,
+                annualPercentageFee: Number($scope.annualFeeB.replaceAll('%', '')),
+                netReturn: Number($scope.netReturnB.replaceAll('%', ''))
+            };
+        } else {
+            fundB = tempFundB;
         }
         calculateFinal();
     });
 
     function calculateFinal() {
+
+        console.log(fundA);
 
         console.log(fundB);
 
@@ -1127,7 +1238,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
     }
 
-    calculateFinal();
+    // calculateFinal();
 
 
 
