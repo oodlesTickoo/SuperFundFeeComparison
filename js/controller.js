@@ -554,7 +554,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         start: [$scope.annualSalary],
         range: {
             'min': [0],
-            'max': [10000000]
+            'max': [600000]
         },
         step: 500,
         format: wNumb({
@@ -599,9 +599,9 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         start: [$scope.superBalance],
         range: {
             'min': [0],
-            'max': [200000]
+            'max': [3000000]
         },
-        step: 500,
+        step: 1000,
         format: wNumb({
             decimals: 0,
             prefix: '$',
@@ -975,6 +975,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     employerContributionLevelSlider.noUiSlider.on('set', function(values, handle) {
         employerContributionLevelInput.value = values[handle];
         $scope.employerContributionLevel = (values[handle]);
+        changeCCLimit();
         calculateFinal();
         $timeout(0);
     });
@@ -1109,6 +1110,9 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         var empContributionPerc = Number($scope.employerContributionLevel.replaceAll('%', ''));
         var empContribution = salary * (empContributionPerc / 100);
         var ccLimit = $scope.age >= 49 ? 35000 - empContribution : 30000 - empContribution;
+        if(ccLimit < 0){
+            ccLimit = 0.4;
+        }
         console.log(ccLimit);
         ccSlider.noUiSlider.updateOptions({
             range: {
