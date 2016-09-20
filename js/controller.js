@@ -301,9 +301,9 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         { id: 298, name: "Anglican National ANS RIL High Growth", annualPercentageFee: 1.19, quarterlyReturn: -4.48, netReturn: -7.44 }
     ];
 
-    var fundA = $scope.fundsOb[0];
+    $scope.fundA = $scope.fundsOb[0];
 
-    var fundB = $scope.fundsOb[0];
+    $scope.fundB = $scope.fundsOb[0];
 
     var tempFundA = $scope.fundsOb[0];
 
@@ -313,9 +313,9 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
     $scope.fundNotFoundB = false; 
 
-    $scope.fundNameA;
+    $scope.fundNameA = "Fund A";
 
-    $scope.fundNameB;   
+    $scope.fundNameB = "Fund B";   
 
     /*$timeout(1);
     $('.selectpicker').selectpicker({
@@ -1025,7 +1025,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     annualFeeASlider.noUiSlider.on('set', function(values, handle) {
         annualFeeAInput.value = values[handle];
         $scope.annualFeeA = (values[handle]);
-        fundA.annualPercentageFee = Number($scope.annualFeeA.replaceAll('%', '')),
+        $scope.fundA.annualPercentageFee = Number($scope.annualFeeA.replaceAll('%', '')),
             calculateFinal();
         $timeout(0);
     });
@@ -1033,7 +1033,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     netReturnASlider.noUiSlider.on('set', function(values, handle) {
         netReturnAInput.value = values[handle];
         $scope.netReturnA = (values[handle]);
-        fundA.netReturn = Number($scope.netReturnA.replaceAll('%', '')),
+        $scope.fundA.netReturn = Number($scope.netReturnA.replaceAll('%', '')),
             calculateFinal();
         $timeout(0);
     });
@@ -1041,7 +1041,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         annualFeeBSlider.noUiSlider.on('set', function(values, handle) {
         annualFeeBInput.value = values[handle];
         $scope.annualFeeB = (values[handle]);
-        fundB.annualPercentageFee = Number($scope.annualFeeB.replaceAll('%', '')),
+        $scope.fundB.annualPercentageFee = Number($scope.annualFeeB.replaceAll('%', '')),
             calculateFinal();
         $timeout(0);
     });
@@ -1049,7 +1049,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     netReturnBSlider.noUiSlider.on('set', function(values, handle) {
         netReturnBInput.value = values[handle];
         $scope.netReturnB = (values[handle]);
-        fundB.netReturn = Number($scope.netReturnB.replaceAll('%', '')),
+        $scope.fundB.netReturn = Number($scope.netReturnB.replaceAll('%', '')),
             calculateFinal();
         $timeout(0);
     });
@@ -1078,13 +1078,15 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     // var nameA = 
 
     document.getElementById('fundNameA').addEventListener("change",function(){
-        fundA.name = document.getElementById('fundNameA').value;
+        $scope.fundA.name = document.getElementById('fundNameA').value;
         calculateFinal();
+        $timeout(0);
     });
 
     document.getElementById('fundNameB').addEventListener("change",function(){
-        fundB.name = document.getElementById('fundNameB').value;
+        $scope.fundB.name = document.getElementById('fundNameB').value;
         calculateFinal();
+        $timeout(0);
     });
 
     // $scope.fundNameChangeA = function(){
@@ -1093,14 +1095,14 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
     $('.sp1').on('change', function() {
         var selected = $('.sp1 option:selected').val();
-        fundA = $scope.fundsOb[selected];
+        $scope.fundA = $scope.fundsOb[selected];
         tempFundA = $scope.fundsOb[selected];
         calculateFinal();
     });
 
     $('.sp2').on('change', function() {
         var selected = $('.sp2 option:selected').val();
-        fundB = $scope.fundsOb[selected];
+        $scope.fundB = $scope.fundsOb[selected];
         tempFundB = $scope.fundsOb[selected];
         calculateFinal();
     });
@@ -1200,13 +1202,13 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     $scope.$watch('fundNotFoundA', function() {
         if ($scope.fundNotFoundA) {
             // console.log("here");
-            fundA = {
+            $scope.fundA = {
                 name: $scope.fundNameA,
                 annualPercentageFee: Number($scope.annualFeeA.replaceAll('%', '')),
                 netReturn: Number($scope.netReturnA.replaceAll('%', ''))
             };
         } else {
-            fundA = tempFundA;
+            $scope.fundA = tempFundA;
         }
         calculateFinal();
     });
@@ -1214,31 +1216,33 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         $scope.$watch('fundNotFoundB', function() {
         if ($scope.fundNotFoundB) {
             // console.log("here B");
-            fundB = {
+            $scope.fundB = {
                 name: $scope.fundNameB,
                 annualPercentageFee: Number($scope.annualFeeB.replaceAll('%', '')),
                 netReturn: Number($scope.netReturnB.replaceAll('%', ''))
             };
         } else {
-            fundB = tempFundB;
+            $scope.fundB = tempFundB;
         }
         calculateFinal();
     });
 
     function calculateFinal() {
 
-        console.log(fundA);
+        $timeout(0);
 
-        console.log(fundB);
+        console.log($scope.fundA);
 
-        var resultFundOne = fundCalculation(fundA.annualPercentageFee, fundA.netReturn);
+        console.log($scope.fundB);
 
-        var resultFundTwo = fundCalculation(fundB.annualPercentageFee, fundB.netReturn);
+        $scope.resultFundOne = fundCalculation($scope.fundA.annualPercentageFee, $scope.fundA.netReturn);
 
-        var savings = Math.abs(resultFundTwo - resultFundOne);
+        $scope.resultFundTwo = fundCalculation($scope.fundB.annualPercentageFee, $scope.fundB.netReturn);
 
-        ChartServiceHc.createChart(Number(resultFundOne.toFixed(2)), Number(resultFundTwo.toFixed(2)), Number(savings.toFixed(2)));
-        DonutChartServiceHc.createChart(Number(resultFundOne.toFixed(2)), Number(resultFundTwo.toFixed(2)), Number(savings.toFixed(2)));
+        $scope.savings = Math.abs($scope.resultFundTwo - $scope.resultFundOne);
+
+        ChartServiceHc.createChart(Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)));
+        DonutChartServiceHc.createChart(Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)));
 
     }
 

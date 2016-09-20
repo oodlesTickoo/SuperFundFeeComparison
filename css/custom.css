@@ -483,6 +483,18 @@ input[type=number] {
         padding-left: 0;
         padding-right: 5px;
 }
+.res-value2{
+  font-size: 13px;
+        /*text-align: right;*/
+        padding-left: 0;
+        padding-right: 5px;
+        /*padding-top:8px;*/
+        /*padding-bottom: 8px;*/
+        text-transform: capitalize;
+}
+.dsb{
+  padding : 5px 0px;
+}
 .res-diff{
     /*font-size: 36px;*/
         font-size: 28px;
