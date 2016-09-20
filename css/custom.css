@@ -407,13 +407,12 @@ input[type=number] {
 .comp-logo{
     float:right;
 }
-@media only screen
-  /*and (min-device-width: 320px)*/
+/*@media only screen
   and (max-device-width: 321px){
 		ul.uib-datepicker-popup{
 			left:-140px !important;
 		}
-	}
+	}*/
 
 @media only screen
 	  and (min-device-width: 322px)
