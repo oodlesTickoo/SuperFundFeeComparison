@@ -407,13 +407,12 @@ input[type=number] {
 .comp-logo{
     float:right;
 }
-@media only screen
-  /*and (min-device-width: 320px)*/
+/*@media only screen
   and (max-device-width: 321px){
 		ul.uib-datepicker-popup{
 			left:-140px !important;
 		}
-	}
+	}*/
 
 @media only screen
 	  and (min-device-width: 322px)
@@ -492,6 +491,7 @@ input[type=number] {
         /*padding-bottom: 8px;*/
         text-transform: capitalize;
         font-weight: normal;
+        word-wrap: break-word;
 }
 .final-head{
   padding-top: 7px;
@@ -517,6 +517,7 @@ input[type=number] {
         font-size: 14px;
     text-transform: capitalize;
     font-weight: normal;
+    word-wrap: break-word;
 }
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
@@ -875,6 +876,9 @@ float:right;
  #donutContainer .highcharts-container {
     margin-top: 50px;
     margin-left:10px;
+}
+.secondChart{
+  page-break-inside: avoid;
 }
 }
 

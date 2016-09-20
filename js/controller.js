@@ -483,7 +483,9 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
     // $scope.age = 42;
 
-    $scope.fy = 2017;
+    var dt = new Date();
+
+    $scope.fy = dt.getFullYear();
 
     $scope.age = AgeCalculator.getAge($scope.dob, $scope.fy);
 
@@ -1248,7 +1250,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
         }
 
-        ChartServiceHc.createChart(Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)));
+        ChartServiceHc.createChart("#container",Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)),false);
+        ChartServiceHc.createChart("#containerR",Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)),false);
         DonutChartServiceHc.createChart(Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)));
 
     }
@@ -1259,14 +1262,59 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
 
 
-    // document.getElementById("download").addEventListener("click", function() {
-    //     var toggleNeeded = false;
-    //     if (!$scope.chartOneOpen) {
-    //         document.getElementById("container").classList.toggle("ng-hide");
-    //         toggleNeeded = true;
-    //     }
-    //     PdfMaker.createChart($scope.dob, $scope.age, $scope.fy, $scope.cses, $scope.thp, $scope.resultWithoutSS, $scope.resultWithSS, $scope.needSS, $scope.optimisedSS, toggleNeeded);
-    // });
+    document.getElementById("download").addEventListener("click", function(){
+        var annualSalary = Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', ''));
+
+        var superBalance = Number($scope.superBalance.replaceAll('$', '').replaceAll(',', ''));
+
+        var retirementAge = $scope.retirementAge;
+
+        var employerContributionLevel = Number($scope.employerContributionLevel.replaceAll('%', ''));
+
+        // var rateOfReturn = Number($scope.rateOfReturn.replaceAll('%',''));
+
+        var superTaxRate = Number($scope.superTaxRate.replaceAll('%', ''));
+
+        var inflation = Number($scope.inflation.replaceAll('%', ''));
+
+        var wageIncrease = Number($scope.wageIncrease.replaceAll('%', ''));
+
+        var insurancePremium = Number($scope.insurancePremium.replaceAll('$', '').replaceAll(',', ''));
+
+        var cc = Number($scope.cc.replaceAll('$', '').replaceAll(',', ''));
+
+        var ncc = Number($scope.ncc.replaceAll('$', '').replaceAll(',', ''));
+
+        var personalDetails = {
+            dob : $scope.dob,
+            age : $scope.age,
+            annualSalary : annualSalary,
+            superBalance : superBalance,
+            retirementAge : retirementAge,
+            cc : cc,
+            ncc : ncc
+        }
+
+        var assumptions = {
+            ecLevel : employerContributionLevel,
+            superTaxRate : superTaxRate,
+            inflation : inflation,
+            wageIncrease : wageIncrease,
+            insurancePremium : insurancePremium
+        }
+
+        var result = {
+            fundA : $scope.fundA,
+            fundB : $scope.fundB,
+            resultFundOne : $scope.resultFundOne,
+            resultFundTwo : $scope.resultFundTwo,
+            savings : $scope.savings
+        }
+
+        console.log(result.fundA);
+
+        PdfMaker.createChart(personalDetails,assumptions,result);
+    });
 
 
 }]);
