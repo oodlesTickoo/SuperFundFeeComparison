@@ -29,22 +29,25 @@ app.service('PdfMaker', [function() {
             { title: "Comparison Graph", dataKey: "info"},
         ];
 
-        var columnsP3 =[{ title: "Calculator Information", dataKey: "info"},];
+        var columnsP3 =[{ title: "Calculator Information", dataKey: "info"}];                               
+
 
         var rowsP3 =[
-        { "info": "1) Home value is the gross valuation of your residential property, you don’t need to reduce it by the mortgage."},
-        { "info": "2) Cash at bank equals to the saving your family has in place."},
-        { "info": "3) Other investment includes but not limit to shares, managed funds, investment property and so on."},
-        { "info": "4) Super balance refers to your superannuation only."},
-        { "info": "5) Home mortgage is the outstanding borrowing on your own property."},
-        { "info": "6) All the other debt refers to the current outstanding you have yet to repay to the lender."},
-        { "info": "7) Financially dependent children are assumed to rely on your support till they turn 25."},
-        { "info": "8) Family living expense is assumed to be supported by you till you turn 65."},
-        { "info": "9) If the client selects to downsize the property in the event of death, the property would be sold at the price that the client indicated in the asset valuation, and the home mortgage will be fully repaid."},
-        { "info": "10) If the new mortgage upon downsize plus the sale proceeds exceed the valuation of the new property that the spouse is going to buy, the surplus will be kept as an additional asset."},
-        { "info": "11) Real rate of return and effective rate of return are used in the calculation."},
-        { "info": "12) Asset excludes the home valuation since the family is assumed to continue living there and cannot cash out the equity."},
-        { "info": "13) Scenario Two comes into account only when the client has a spouse who would like to move to a smaller property in case the insured event occurs."}
+        { "info": "1) Superannuation Guarantee Contribution is 9.5% of Gross Salary."},
+        { "info": "2) Contribution tax rate is 15%. For taxable income above $300,000 the contributions tax rate increases to 30%."},
+        { "info": "3) This model has a 'wage increase rate' which is currently set to the same value as inflation, 3.5% per annum. Salary sacrifice and personal contributions are indexed to inflation."},
+        { "info": "4) No deductions made for insurance premiums."},
+        { "info": "5) The assumed earnings rate for all funds, as used in this calculation, is 6% before fees and taxes."},
+        { "info": "6) The tax on earnings in all funds is calculated at 15%."},
+        { "info": "7)  Assume that the establishment fee is zero"},
+        { "info": "8) ssume that there is no adviser service fee."},
+        { "info": "9) This is a model not a prediction. Results are only estimates, the actual amounts may be higher or lower. We cannot predict things that will affect your decision such as movements in investment markets."},
+        { "info": "10) This calculator is not intended to be your sole source of information when making a financial decision. You should consider seeking advice from a qualified financial advisor."},
+        { "info": "11) This calculator does not work for people in defined benefit funds."},
+        { "info": "12) The superannuation amounts are shown in today’s dollars."},
+        { "info": "13) This is a fee comparison calculator, hence we assume that the investment earnings, insurance premiums and all other factors are the same between a low cost fund and your fund."},
+        { "info": "14) Real investment earnings are 3% per year after inflation."},
+        { "info": "15) Annual administration fees and costs may change over time your rate of super contributions will remain at 9.5% p.a."}
         ];
 
         var columns1 = [
