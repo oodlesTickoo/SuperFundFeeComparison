@@ -303,19 +303,19 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
     $scope.fundA = $scope.fundsOb[0];
 
-    $scope.fundB = $scope.fundsOb[0];
+    $scope.fundB = $scope.fundsOb[1];
 
     var tempFundA = $scope.fundsOb[0];
 
-    var tempFundB = $scope.fundsOb[0];
+    var tempFundB = $scope.fundsOb[1];
 
     $scope.fundNotFoundA = false;
 
-    $scope.fundNotFoundB = false; 
+    $scope.fundNotFoundB = false;
 
     $scope.fundNameA = "Fund A";
 
-    $scope.fundNameB = "Fund B";   
+    $scope.fundNameB = "Fund B";
 
     /*$timeout(1);
     $('.selectpicker').selectpicker({
@@ -327,12 +327,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
           element.selectpicker();
        });
     }*/
-    $timeout(function() {
-        $('.selectpicker').selectpicker({
-            style: 'btn-info',
-            size: 10
-        });
-    });
+
 
 
     String.prototype.replaceAll = function(search, replacement) {
@@ -515,7 +510,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
     $scope.netReturnA = 1.50;
 
-        $scope.annualFeeB = 1.50;
+    $scope.annualFeeB = 1.50;
 
     $scope.netReturnB = 1.50;
 
@@ -698,7 +693,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         connect: 'lower'
     });
 
-        noUiSlider.create(annualFeeBSlider, {
+    noUiSlider.create(annualFeeBSlider, {
         start: [$scope.annualFeeB],
         range: {
             'min': [0],
@@ -787,7 +782,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         superTaxRateInput = document.getElementById('superTaxRateInput'),
         annualFeeAInput = document.getElementById('annualFeeAInput'),
         netReturnAInput = document.getElementById('netReturnAInput'),
-                annualFeeBInput = document.getElementById('annualFeeBInput'),
+        annualFeeBInput = document.getElementById('annualFeeBInput'),
         netReturnBInput = document.getElementById('netReturnBInput'),
         // memberFeeInput = document.getElementById('memberFeeInput'),
         ccInput = document.getElementById('ccInput'),
@@ -848,7 +843,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         $scope.netReturnA = (values[handle]);
     });
 
-        annualFeeBSlider.noUiSlider.on('update', function(values, handle) {
+    annualFeeBSlider.noUiSlider.on('update', function(values, handle) {
         annualFeeBInput.value = values[handle];
         $scope.annualFeeB = (values[handle]);
     });
@@ -939,7 +934,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         netReturnASlider.noUiSlider.set($scope.netReturnA);
     });
 
-        annualFeeBInput.addEventListener("change", function() {
+    annualFeeBInput.addEventListener("change", function() {
         annualFeeBSlider.noUiSlider.set($scope.annualFeeB);
     });
 
@@ -1040,7 +1035,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         $timeout(0);
     });
 
-        annualFeeBSlider.noUiSlider.on('set', function(values, handle) {
+    annualFeeBSlider.noUiSlider.on('set', function(values, handle) {
         annualFeeBInput.value = values[handle];
         $scope.annualFeeB = (values[handle]);
         $scope.fundB.annualPercentageFee = Number($scope.annualFeeB.replaceAll('%', '')),
@@ -1079,13 +1074,13 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
     // var nameA = 
 
-    document.getElementById('fundNameA').addEventListener("change",function(){
+    document.getElementById('fundNameA').addEventListener("change", function() {
         $scope.fundA.name = document.getElementById('fundNameA').value;
         calculateFinal();
         $timeout(0);
     });
 
-    document.getElementById('fundNameB').addEventListener("change",function(){
+    document.getElementById('fundNameB').addEventListener("change", function() {
         $scope.fundB.name = document.getElementById('fundNameB').value;
         calculateFinal();
         $timeout(0);
@@ -1095,17 +1090,51 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
     // }
 
+    $timeout(function() {
+        $('.selectpicker').selectpicker({
+            style: 'btn-info',
+            size: 10
+        });
+        $('.sp2 option[value="1"]').attr("selected",true);
+        $('.sp2').selectpicker('refresh');
+        $timeout(0);
+    });
+
+    var selected1 = 0;
+    var selected2 = 1;
+
+    $('.sp1').on('shown.bs.select', function(e) {
+        $('.sp1 option[value=' + selected2 + ']').attr('disabled', true);
+        $('.sp1').selectpicker('refresh');
+    });
+
+    $('.sp1').on('hidden.bs.select', function(e) {
+        $('.sp1 option[value=' + selected2 + ']').attr('disabled', false);
+        $('.sp1').selectpicker('refresh');
+    });
+
+    $('.sp2').on('shown.bs.select', function(e) {
+        $('.sp2 option[value=' + selected1 + ']').attr('disabled', true);
+        $('.sp2').selectpicker('refresh');
+    });
+
+    $('.sp2').on('hidden.bs.select', function(e) {
+        $('.sp2 option[value=' + selected1 + ']').attr('disabled', false);
+        $('.sp2').selectpicker('refresh');
+    });
+
+
     $('.sp1').on('change', function() {
-        var selected = $('.sp1 option:selected').val();
-        $scope.fundA = $scope.fundsOb[selected];
-        tempFundA = $scope.fundsOb[selected];
+        selected1 = $('.sp1 option:selected').val();
+        $scope.fundA = $scope.fundsOb[selected1];
+        tempFundA = $scope.fundsOb[selected1];
         calculateFinal();
     });
 
     $('.sp2').on('change', function() {
-        var selected = $('.sp2 option:selected').val();
-        $scope.fundB = $scope.fundsOb[selected];
-        tempFundB = $scope.fundsOb[selected];
+        selected2 = $('.sp2 option:selected').val();
+        $scope.fundB = $scope.fundsOb[selected2];
+        tempFundB = $scope.fundsOb[selected2];
         calculateFinal();
     });
 
@@ -1114,7 +1143,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         var empContributionPerc = Number($scope.employerContributionLevel.replaceAll('%', ''));
         var empContribution = salary * (empContributionPerc / 100);
         var ccLimit = $scope.age >= 49 ? 35000 - empContribution : 30000 - empContribution;
-        if(ccLimit < 0){
+        if (ccLimit < 0) {
             ccLimit = 0.4;
         }
         console.log(ccLimit);
@@ -1245,17 +1274,17 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
         $scope.resultFundTwo = fundCalculation($scope.fundB.annualPercentageFee, $scope.fundB.netReturn);
 
-        if($scope.resultFundTwo>$scope.resultFundOne){
-            $scope.savings=$scope.resultFundTwo - $scope.resultFundOne;
-            $scope.savingsName= $scope.fundB.name;
-        }else{
-            $scope.savings= $scope.resultFundOne- $scope.resultFundTwo;
-            $scope.savingsName= $scope.fundA.name;
+        if ($scope.resultFundTwo > $scope.resultFundOne) {
+            $scope.savings = $scope.resultFundTwo - $scope.resultFundOne;
+            $scope.savingsName = $scope.fundB.name;
+        } else {
+            $scope.savings = $scope.resultFundOne - $scope.resultFundTwo;
+            $scope.savingsName = $scope.fundA.name;
 
         }
 
-        ChartServiceHc.createChart("#container",Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)),false);
-        ChartServiceHc.createChart("#containerR",Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)),false);
+        ChartServiceHc.createChart("#container", Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)), false);
+        ChartServiceHc.createChart("#containerR", Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)), false);
         DonutChartServiceHc.createChart(Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)));
 
     }
@@ -1266,7 +1295,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
 
 
-    document.getElementById("download").addEventListener("click", function(){
+    document.getElementById("download").addEventListener("click", function() {
         var annualSalary = Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', ''));
 
         var superBalance = Number($scope.superBalance.replaceAll('$', '').replaceAll(',', ''));
@@ -1290,34 +1319,34 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         var ncc = Number($scope.ncc.replaceAll('$', '').replaceAll(',', ''));
 
         var personalDetails = {
-            dob : $scope.dob,
-            age : $scope.age,
-            annualSalary : annualSalary,
-            superBalance : superBalance,
-            retirementAge : retirementAge,
-            cc : cc,
-            ncc : ncc
+            dob: $scope.dob,
+            age: $scope.age,
+            annualSalary: annualSalary,
+            superBalance: superBalance,
+            retirementAge: retirementAge,
+            cc: cc,
+            ncc: ncc
         }
 
         var assumptions = {
-            ecLevel : employerContributionLevel,
-            superTaxRate : superTaxRate,
-            inflation : inflation,
-            wageIncrease : wageIncrease,
-            insurancePremium : insurancePremium
+            ecLevel: employerContributionLevel,
+            superTaxRate: superTaxRate,
+            inflation: inflation,
+            wageIncrease: wageIncrease,
+            insurancePremium: insurancePremium
         }
 
         var result = {
-            fundA : $scope.fundA,
-            fundB : $scope.fundB,
-            resultFundOne : $scope.resultFundOne,
-            resultFundTwo : $scope.resultFundTwo,
-            savings : $scope.savings
+            fundA: $scope.fundA,
+            fundB: $scope.fundB,
+            resultFundOne: $scope.resultFundOne,
+            resultFundTwo: $scope.resultFundTwo,
+            savings: $scope.savings
         }
 
         console.log(result.fundA);
 
-        PdfMaker.createChart(personalDetails,assumptions,result);
+        PdfMaker.createChart(personalDetails, assumptions, result);
     });
 
 

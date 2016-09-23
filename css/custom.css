@@ -1083,3 +1083,11 @@ a:focus{
 .open>.dropdown-toggle.btn-info:hover{
   color:black!important;
 }
+
+/*.sp1 option[disabled] {
+    display: none;
+}*/
+
+option.done{
+  display:none !important;
+}

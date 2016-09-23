@@ -497,6 +497,21 @@
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
     <script src="js/app.js" type="text/javascript"></script>
     <script src="js/controller.js" type="text/javascript"></script>
+    <script>
+              function init(){
+              $('.selectpicker').selectpicker({
+            style: 'btn-info',
+            size: 10
+        });
+
+            //   console.log($('.sp2 option')[1].selected);
+            //   $('.sp1 option')[0].selected = "true";
+            //   $('.sp2 option')[1].selected = "true";
+            //   console.log($('.sp2 option')[1].selected);
+            // console.log($('.sp2 option:selected'));
+          }
+          window.onload = init;
+    </script>
     <script src="js/AgeCalculatorService.js" type="text/javascript"></script>
     <script src="js/TaxRateCalculatorService.js" type="text/javascript"></script>
     <script src="js/SGCRateCalculator.js" type="text/javascript"></script>
@@ -518,6 +533,7 @@
     <script src="js/StackBlur.js" type="text/javascript"></script>
     <script src="js/canvg.min.js" type="text/javascript"></script>
     <script src="js/PdfMaker.js" type="text/javascript"></script>
+    
 </body>
 
 </html>
