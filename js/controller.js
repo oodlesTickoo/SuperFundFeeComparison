@@ -1,4 +1,4 @@
-app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRateCalculator', 'SGCRate', 'WithoutSSCalculator', 'WithSSCalculator', 'ChartServiceHc', 'DonutChartServiceHc', 'PdfMaker', function($scope, $timeout, AgeCalculator, TaxRateCalculator, SGCRate, WithoutSSCalculator, WithSSCalculator, ChartServiceHc, DonutChartServiceHc, PdfMaker) {
+app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator','ChartServiceHc', 'DonutChartServiceHc', 'PdfMaker', function($scope, $timeout, AgeCalculator, ChartServiceHc, DonutChartServiceHc, PdfMaker) {
 
     $scope.fundsOb = [{ id: 0, name: "Building Unions Super Scheme Queensland BUSSQ", annualPercentageFee: 1.31, quarterlyReturn: -0.19, netReturn: 3.03 },
         { id: 1, name: "First Super", annualPercentageFee: 0.89, quarterlyReturn: 0.37, netReturn: 2.95 },
@@ -367,7 +367,6 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     $scope.firstDP = function() {
         $scope.dateOptions.maxDate = new Date(1998, 11, 31);
         $scope.dateOptions.minDate = new Date(1950, 0, 1);
-        console.log("firstDp", $scope.dateOptions.minDate);
     }
 
     $scope.secondDp = function() {
@@ -877,10 +876,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         var date_regex = /^([1-9]|0[1-9]|1\d|2\d|3[01])\/(0[1-9]|[1-9]|1[0-2])\/(19[5-9][0-8])$/;
         var correct = date_regex.test(dobText.value);
         var fd = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
-        // console.log("fd",fd);
-        console.log("correct", correct);
-        console.log("c1", (fd.getMonth() + 1), Number(dateArr[1]));
-        console.log("c2", fd.getDate(), Number(dateArr[0]));
+
         if (((fd.getMonth() + 1) === Number(dateArr[1]) && fd.getDate() === Number(dateArr[0])) && correct) {
             $scope.dob = fd;
         } else {
@@ -1142,7 +1138,6 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         $('.sp2').selectpicker('refresh');
         $scope.fundNotFoundB=false;
         if($scope.fundNotFoundA){
-            console.log("here",selected1);
             $('.sp2 option[value=' + selected1 + ']').attr('disabled', false); 
             $('.sp2').selectpicker('refresh'); 
                     
@@ -1177,7 +1172,6 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         if (ccLimit < 0) {
             ccLimit = 0.4;
         }
-        console.log(ccLimit);
         ccSlider.noUiSlider.updateOptions({
             range: {
                 'min': 0,
@@ -1229,20 +1223,13 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
         for (count = 0; count <= yearLimit; count++) {
             cpi = Math.pow(1 + (inflation / 100), year);
-            // console.log("cpi",cpi);
             adjustedSalary = annualSalary * Math.pow(1 + (wageIncrease / 100), year);
-            // console.log("adj",adjustedSalary);
             netContribution = (adjustedSalary * employerContributionLevel / 100 + cc) * (1 - superTaxRate / 100) + ncc;
-            // console.log("adj",netContribution);
             earnings = balanceArray[count] * (Math.pow(1 + (fundReturn / 100), 0.5) - 1) + ((balanceArray[count] * Math.pow(1 + (fundReturn / 100), 0.5) + netContribution) * (Math.pow(1 + (fundReturn / 100), 0.5) - 1));
-            // console.log("adj",earnings);
-            // insurancePremium = 0;
 
             fees = balanceArray[count] * (fundFee / 100);
-            // console.log("fee",fees);
 
             tax = (earnings - insurancePremium - fees) * superTaxRate / 100;
-            // console.log("fee",tax);
             balance = balanceArray[count] + netContribution + earnings - fees - insurancePremium - tax;
 
             balanceCpi = 1 / cpi;
@@ -1257,7 +1244,6 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
         }
 
-        console.log(biArray);
 
         return biArray.slice(-1)[0];
     }
@@ -1265,7 +1251,6 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     $scope.fundNotFoundAChange=function(valueA){
         $scope.fundNotFoundA=valueA;
         if ($scope.fundNotFoundA) {
-            // console.log("here");
             $scope.fundA = {
                 name: $scope.fundNameA,
                 annualPercentageFee: Number($scope.annualFeeA.replaceAll('%', '')),
@@ -1275,13 +1260,11 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
             $scope.fundA = tempFundA;
         }
         calculateFinal();
-        //$timeout(0);
     }
 
     $scope.fundNotFoundBChange=function(valueB){
         $scope.fundNotFoundB=valueB;
         if ($scope.fundNotFoundB) {
-            // console.log("here B");
             $scope.fundB = {
                 name: $scope.fundNameB,
                 annualPercentageFee: Number($scope.annualFeeB.replaceAll('%', '')),
@@ -1291,16 +1274,12 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
             $scope.fundB = tempFundB;
         }
         calculateFinal();
-        //$timeout(0);
     }
 
     function calculateFinal() {
 
         $timeout(0);
 
-        console.log($scope.fundA);
-
-        console.log($scope.fundB);
 
         $scope.resultFundOne = fundCalculation($scope.fundA.annualPercentageFee, $scope.fundA.netReturn);
 
@@ -1376,7 +1355,6 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
             savings: $scope.savings
         }
 
-        console.log(result.fundA);
 
         PdfMaker.createChart(personalDetails, assumptions, result);
     });
