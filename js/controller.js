@@ -1125,6 +1125,10 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         $('.sp1 option[value=' + selected2 + ']').attr('disabled', true);
         $('.sp1').selectpicker('refresh');
         $scope.fundNotFoundA=false;
+        if($scope.fundNotFoundB){
+            $('.sp1 option[value=' + selected2 + ']').attr('disabled', false);   
+            $('.sp1').selectpicker('refresh');      
+        }
 
     });
 
@@ -1137,6 +1141,12 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         $('.sp2 option[value=' + selected1 + ']').attr('disabled', true);
         $('.sp2').selectpicker('refresh');
         $scope.fundNotFoundB=false;
+        if($scope.fundNotFoundA){
+            console.log("here",selected1);
+            $('.sp2 option[value=' + selected1 + ']').attr('disabled', false); 
+            $('.sp2').selectpicker('refresh'); 
+                    
+        }
     });
 
     $('.sp2').on('hidden.bs.select', function(e) {

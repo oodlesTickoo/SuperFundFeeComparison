@@ -1080,8 +1080,10 @@ a:focus{
   outline: none;
   background-color: white;
 }
-.open>.dropdown-toggle.btn-info:hover{
+.open>.dropdown-toggle.btn-info:hover,.open>.dropdown-toggle.btn-info:focus{
   color:black!important;
+  border: 1px solid #ccc;
+
 }
 
 /*.sp1 option[disabled] {
