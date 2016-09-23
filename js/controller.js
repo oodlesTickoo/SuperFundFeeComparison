@@ -869,6 +869,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     });
 
     $scope.ageChange = function() {
+
         var dobText = document.getElementById("dobText");
         var dateString = dobText.value;
         var dateArr = dateString.split("/");
@@ -886,7 +887,24 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
             $scope.dob = initDate;
         }
         $scope.age = AgeCalculator.getAge($scope.dob, $scope.fy);
+        
+        if($scope.age>59){
+            retirementAgeSlider.noUiSlider.updateOptions({  
+                range: {
+                    'min': ($scope.age+1),
+                    'max': 75
+                }
+            });
+        }else{
+            retirementAgeSlider.noUiSlider.updateOptions({  
+                range: {
+                    'min': 60,
+                    'max': 75
+                }
+            });
+        }
         changeCCLimit();
+        
         // $scope.submitForm2(true);
     }
 
@@ -1106,6 +1124,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     $('.sp1').on('shown.bs.select', function(e) {
         $('.sp1 option[value=' + selected2 + ']').attr('disabled', true);
         $('.sp1').selectpicker('refresh');
+        $scope.fundNotFoundA=false;
+
     });
 
     $('.sp1').on('hidden.bs.select', function(e) {
@@ -1116,6 +1136,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     $('.sp2').on('shown.bs.select', function(e) {
         $('.sp2 option[value=' + selected1 + ']').attr('disabled', true);
         $('.sp2').selectpicker('refresh');
+        $scope.fundNotFoundB=false;
     });
 
     $('.sp2').on('hidden.bs.select', function(e) {
@@ -1153,6 +1174,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
                 'max': ccLimit
             }
         });
+        
     }
 
     function fundCalculation(fundReturn, fundFee) {
