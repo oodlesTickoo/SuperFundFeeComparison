@@ -1113,14 +1113,14 @@ $scope.fundsOb = [
     var selected2 = 1;
 
     $('.sp1').on('shown.bs.select', function(e) {
+        // $scope.fundNotFoundA=false;
+        if($scope.fundNotFoundB){
+            // $('.sp1 option[value=' + selected2 + ']').attr('disabled', false);   
+            // $('.sp1').selectpicker('refresh');      
+        }else{
         $('.sp1 option[value=' + selected2 + ']').attr('disabled', true);
         $('.sp1').selectpicker('refresh');
-        $scope.fundNotFoundA=false;
-        if($scope.fundNotFoundB){
-            $('.sp1 option[value=' + selected2 + ']').attr('disabled', false);   
-            $('.sp1').selectpicker('refresh');      
-        }
-
+    }
     });
 
     $('.sp1').on('hidden.bs.select', function(e) {
@@ -1129,14 +1129,14 @@ $scope.fundsOb = [
     });
 
     $('.sp2').on('shown.bs.select', function(e) {
+        
+        if($scope.fundNotFoundA){
+            // $('.sp2 option[value=' + selected1 + ']').attr('disabled', false); 
+            // $('.sp2').selectpicker('refresh');             
+        }else{
         $('.sp2 option[value=' + selected1 + ']').attr('disabled', true);
         $('.sp2').selectpicker('refresh');
-        $scope.fundNotFoundB=false;
-        if($scope.fundNotFoundA){
-            $('.sp2 option[value=' + selected1 + ']').attr('disabled', false); 
-            $('.sp2').selectpicker('refresh'); 
-                    
-        }
+    }
     });
 
     $('.sp2').on('hidden.bs.select', function(e) {
@@ -1146,6 +1146,7 @@ $scope.fundsOb = [
 
 
     $('.sp1').on('change', function() {
+        $scope.fundNotFoundA=false;
         selected1 = $('.sp1 option:selected').val();
         $scope.fundA = $scope.fundsOb[selected1];
         tempFundA = $scope.fundsOb[selected1];
@@ -1153,6 +1154,7 @@ $scope.fundsOb = [
     });
 
     $('.sp2').on('change', function() {
+        $scope.fundNotFoundB=false;
         selected2 = $('.sp2 option:selected').val();
         $scope.fundB = $scope.fundsOb[selected2];
         tempFundB = $scope.fundsOb[selected2];
@@ -1224,7 +1226,11 @@ $scope.fundsOb = [
             netContribution = (adjustedSalary * employerContributionLevel / 100 + cc) * (1 - superTaxRate / 100) + ncc;
             earnings = balanceArray[count] * (Math.pow(1 + (fundReturn / 100), 0.5) - 1) + ((balanceArray[count] * Math.pow(1 + (fundReturn / 100), 0.5) + netContribution) * (Math.pow(1 + (fundReturn / 100), 0.5) - 1));
 
+            if(fundFee > 100){
+            fees = fundFee;
+            }else{
             fees = balanceArray[count] * (fundFee / 100);
+            }
 
             tax = (earnings - insurancePremium - fees) * superTaxRate / 100;
             balance = balanceArray[count] + netContribution + earnings - fees - insurancePremium - tax;
