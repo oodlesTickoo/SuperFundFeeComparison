@@ -83,8 +83,8 @@ app.service('PdfMaker', [function() {
         ];
         var rows3 = [
             { "details": "Name", "fundA":result.fundA.name, "fundB":result.fundB.name},
-            { "details": "Annual Fee", "fundA": pcFormat.to(result.fundA.annualPercentageFee), "fundB": pcFormat.to(result.fundB.annualPercentageFee)},
-            { "details": "Annual Return", "fundA": pcFormat.to(result.fundA.netReturn), "fundB": pcFormat.to(result.fundB.netReturn)},
+            { "details": "Annual Fee", "fundA":result.fundA.annualPercentageFee > 100 ? moneyFormat.to(result.fundA.annualPercentageFee) : pcFormat.to(result.fundA.annualPercentageFee), "fundB": result.fundB.annualPercentageFee > 100 ? moneyFormat.to(result.fundB.annualPercentageFee) : pcFormat.to(result.fundB.annualPercentageFee)},
+            // { "details": "Annual Return", "fundA": pcFormat.to(result.fundA.netReturn), "fundB": pcFormat.to(result.fundB.netReturn)},
         ];
 
         var columns32 = [
@@ -173,7 +173,7 @@ app.service('PdfMaker', [function() {
         });
 
         doc.autoTable(columns32,rows32,{
-            margin: { top: 220 },
+            margin: { top: 210 },
             columnStyles:{
             info: {columnWidth: 420},
             value: {columnWidth: 97}
@@ -187,7 +187,7 @@ app.service('PdfMaker', [function() {
             });
 
         doc.autoTable(columnsP3,rowsP3,{
-            margin: { top: 390 },
+            margin: { top: 330 },
             styles:{
             //   rowHeight:40,
             //   halign : 'left',
