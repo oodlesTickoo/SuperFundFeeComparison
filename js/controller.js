@@ -762,6 +762,8 @@ $scope.fundsOb = [
         connect: 'lower'
     });
 
+    superTaxRateSlider.setAttribute('disabled',true);
+
 
 
     var ageInput = document.getElementById('ageInput'),
