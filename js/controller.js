@@ -738,7 +738,7 @@ $scope.fundsOb = [
             'min': [0],
             'max': [30000]
         },
-        step: 500,
+        step: 100,
         format: wNumb({
             decimals: 0,
             prefix: '$',
@@ -1164,6 +1164,8 @@ $scope.fundsOb = [
         tempFundB = $scope.fundsOb[selected2];
         calculateFinal();
     });
+
+    changeCCLimit();
 
     function changeCCLimit() {
         var salary = Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', ''));
