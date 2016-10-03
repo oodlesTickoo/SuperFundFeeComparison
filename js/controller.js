@@ -324,6 +324,10 @@ $scope.fundsOb = [
 
     $scope.fundNameB = "Fund B";
 
+    var dt = new Date();
+
+    $scope.fy = dt.getMonth() > 5 ? dt.getFullYear() : dt.getFullYear()-1;
+
     /*$timeout(1);
     $('.selectpicker').selectpicker({
       style: 'btn-info',
@@ -372,7 +376,7 @@ $scope.fundsOb = [
         // $scope.unattainableTHP = false;
 
     $scope.firstDP = function() {
-        $scope.dateOptions.maxDate = new Date(1998, 11, 31);
+        $scope.dateOptions.maxDate = new Date($scope.fy - 18, 5, 30);
         $scope.dateOptions.minDate = new Date(1950, 0, 1);
     }
 
@@ -472,9 +476,7 @@ $scope.fundsOb = [
 
     // $scope.age = 42;
 
-    var dt = new Date();
 
-    $scope.fy = dt.getFullYear();
 
     $scope.age = AgeCalculator.getAge($scope.dob, $scope.fy);
 
@@ -750,7 +752,7 @@ $scope.fundsOb = [
         start: [$scope.ncc],
         range: {
             'min': [0],
-            'max': [30000]
+            'max': [180000]
         },
         step: 500,
         format: wNumb({
@@ -870,7 +872,7 @@ $scope.fundsOb = [
         var dateString = dobText.value;
         var dateArr = dateString.split("/");
 
-        var date_regex = /^([1-9]|0[1-9]|1\d|2\d|3[01])\/(0[1-9]|[1-9]|1[0-2])\/(19[5-9][0-8])$/;
+        var date_regex = /^([1-9]|0[1-9]|1\d|2\d|3[01])\/(0[1-9]|[1-9]|1[0-2])\/(19[5-9][0-9])$/;
         var correct = date_regex.test(dobText.value);
         var fd = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
 
@@ -1166,7 +1168,7 @@ $scope.fundsOb = [
     function changeCCLimit() {
         var salary = Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', ''));
         var empContributionPerc = Number($scope.employerContributionLevel.replaceAll('%', ''));
-        var empContribution = salary * (empContributionPerc / 100);
+        var empContribution = salary * (empContributionPerc / 100) > 19615.60 ? 19615.60 : salary * (empContributionPerc / 100) ;
         var ccLimit = $scope.age >= 49 ? 35000 - empContribution : 30000 - empContribution;
         if (ccLimit < 0) {
             ccLimit = 0.4;
