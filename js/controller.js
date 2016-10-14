@@ -1368,5 +1368,38 @@ $scope.fundsOb = [
         PdfMaker.createChart(personalDetails, assumptions, result);
     });
 
+        document.getElementById("bar-chart").addEventListener("click",function(){
+        $scope.chartOneOpen = true;
+        document.getElementById("donutContainer").style.display = "none";
+        document.getElementById("container").style.display = "block";
+        $timeout(0);
+    });
+
+    document.getElementById("donut-chart").addEventListener("click",function(){
+        $scope.chartOneOpen = false;
+        document.getElementById("container").style.display = "none";
+        document.getElementById("donutContainer").style.display = "block";
+        $timeout(0);
+    });
+
+
+    $(".print-doc").on("click",printBothCharts);
+
+    function printBothCharts(){
+            if($scope.chartOneOpen){
+        document.getElementById("donutContainer").style.display = "block";
+           window.print();
+           setTimeout(function(){
+            document.getElementById("donutContainer").style.display = "none";
+         },100);
+       }else{
+        document.getElementById("container").style.display = "block";
+           window.print();
+           setTimeout(function(){
+            document.getElementById("container").style.display = "none";
+         },100);
+       }	
+   };
+
 
 }]);
