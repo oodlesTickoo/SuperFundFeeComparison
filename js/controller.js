@@ -307,7 +307,10 @@ $scope.fundsOb = [
 { id: 303, name: 'Anglican National ANS RIL High Growth', annualPercentageFee: 1.19 }    
 ];
 
-
+	$scope.forms = {};
+    
+    $scope.personalDetails ={};
+	
     $scope.fundA = $scope.fundsOb[0];
 
     $scope.fundB = $scope.fundsOb[1];
@@ -328,19 +331,6 @@ $scope.fundsOb = [
 
     $scope.fy = dt.getMonth() > 5 ? dt.getFullYear() : dt.getFullYear()-1;
 
-    /*$timeout(1);
-    $('.selectpicker').selectpicker({
-      style: 'btn-info',
-      size: 10
-    });
-    link: function(scope, element, attrs, ctrl) {
-       $timeout(function() {      
-          element.selectpicker();
-       });
-    }*/
-
-
-
     String.prototype.replaceAll = function(search, replacement) {
         var target = this;
         return target.split(search).join(replacement);
@@ -358,8 +348,6 @@ $scope.fundsOb = [
     initDate.setMonth(6);
     initDate.setDate(1);
     $scope.dob = initDate;
-
-    // $('#kartik').tooltip();
 
     $scope.chartOneOpen = true;
 
@@ -407,13 +395,6 @@ $scope.fundsOb = [
         startingDay: 1,
         showWeeks: false
     };
-
-    // $scope.toggleMin = function() {
-    //   $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
-    //   $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
-    // };
-
-    // $scope.toggleMin();
 
     $scope.open1 = function() {
         $scope.popup1.opened = true;
@@ -473,11 +454,6 @@ $scope.fundsOb = [
 
     $scope.overlay = false;
 
-
-    // $scope.age = 42;
-
-
-
     $scope.age = AgeCalculator.getAge($scope.dob, $scope.fy);
 
     $scope.retirementAge = 67;
@@ -516,16 +492,13 @@ $scope.fundsOb = [
         annualSalarySlider = document.getElementById('annualSalarySlider'),
         employerContributionLevelSlider = document.getElementById('employerContributionLevelSlider'),
         superBalanceSlider = document.getElementById('superBalanceSlider'),
-        // rateOfReturnSlider = document.getElementById('rateOfReturnSlider'),
         inflationSlider = document.getElementById('inflationSlider'),
         wageIncreaseSlider = document.getElementById('wageIncreaseSlider'),
         insurancePremiumSlider = document.getElementById('insurancePremiumSlider'),
         superTaxRateSlider = document.getElementById('superTaxRateSlider'),
         annualFeeASlider = document.getElementById('annualFeeASlider'),
-        // netReturnASlider = document.getElementById('netReturnASlider'),
         annualFeeBSlider = document.getElementById('annualFeeBSlider'),
         netReturnSlider = document.getElementById('netReturnSlider'),
-        // memberFeeSlider = document.getElementById('memberFeeSlider'),
         ccSlider = document.getElementById('ccSlider'),
         nccSlider = document.getElementById('nccSlider');
 
@@ -603,20 +576,6 @@ $scope.fundsOb = [
         connect: 'lower'
     });
 
-    // noUiSlider.create(rateOfReturnSlider, {
-    //     start: [$scope.rateOfReturn],
-    //     range: {
-    //         'min': [0],
-    //         'max': [50]
-    //     },
-    //     step: 0.5,
-    //     format: wNumb({
-    //         decimals: 2,
-    //         postfix: '%',
-    //     }),
-    //     connect: 'lower'
-    // });
-
     noUiSlider.create(wageIncreaseSlider, {
         start: [$scope.wageIncrease],
         range: {
@@ -675,20 +634,6 @@ $scope.fundsOb = [
         connect: 'lower'
     });
 
-    // noUiSlider.create(netReturnASlider, {
-    //     start: [$scope.netReturnA],
-    //     range: {
-    //         'min': [0],
-    //         'max': [10]
-    //     },
-    //     step: 0.5,
-    //     format: wNumb({
-    //         decimals: 2,
-    //         postfix: '%',
-    //     }),
-    //     connect: 'lower'
-    // });
-
     noUiSlider.create(annualFeeBSlider, {
         start: [$scope.annualFeeB],
         range: {
@@ -716,21 +661,6 @@ $scope.fundsOb = [
         }),
         connect: 'lower'
     });
-
-    // noUiSlider.create(memberFeeSlider, {
-    //     start: [$scope.memberFee],
-    //     range: {
-    //         'min': [0],
-    //         'max': [4000]
-    //     },
-    //     step: 100,
-    //     format: wNumb({
-    //         decimals: 0,
-    //         prefix: '$',
-    //         thousand: ','
-    //     }),
-    //     connect: 'lower'
-    // });
 
     noUiSlider.create(ccSlider, {
         start: [$scope.cc],
@@ -773,16 +703,13 @@ $scope.fundsOb = [
         annualSalaryInput = document.getElementById('annualSalaryInput'),
         employerContributionLevelInput = document.getElementById('employerContributionLevelInput'),
         superBalanceInput = document.getElementById('superBalanceInput'),
-        // rateOfReturnInput = document.getElementById('rateOfReturnInput'),
         inflationInput = document.getElementById('inflationInput'),
         wageIncreaseInput = document.getElementById('wageIncreaseInput'),
         insurancePremiumInput = document.getElementById('insurancePremiumInput'),
         superTaxRateInput = document.getElementById('superTaxRateInput'),
         annualFeeAInput = document.getElementById('annualFeeAInput'),
-        // netReturnAInput = document.getElementById('netReturnAInput'),
         annualFeeBInput = document.getElementById('annualFeeBInput'),
         netReturnInput = document.getElementById('netReturnInput'),
-        // memberFeeInput = document.getElementById('memberFeeInput'),
         ccInput = document.getElementById('ccInput'),
         nccInput = document.getElementById('nccInput');
 
@@ -805,11 +732,6 @@ $scope.fundsOb = [
         superBalanceInput.value = values[handle];
         $scope.superBalance = (values[handle]);
     });
-
-    // rateOfReturnSlider.noUiSlider.on('update', function(values, handle) {
-    //     rateOfReturnInput.value = values[handle];
-    //     $scope.rateOfReturn = (values[handle]);
-    // });
 
     inflationSlider.noUiSlider.on('update', function(values, handle) {
         inflationInput.value = values[handle];
@@ -836,11 +758,6 @@ $scope.fundsOb = [
         $scope.annualFeeA = (values[handle]);
     });
 
-    // netReturnASlider.noUiSlider.on('update', function(values, handle) {
-    //     netReturnAInput.value = values[handle];
-    //     $scope.netReturnA = (values[handle]);
-    // });
-
     annualFeeBSlider.noUiSlider.on('update', function(values, handle) {
         annualFeeBInput.value = values[handle];
         $scope.annualFeeB = (values[handle]);
@@ -850,11 +767,6 @@ $scope.fundsOb = [
         netReturnInput.value = values[handle];
         $scope.netReturn = (values[handle]);
     });
-
-    // memberFeeSlider.noUiSlider.on('update', function(values, handle) {
-    //     memberFeeInput.value = values[handle];
-    //     $scope.memberFee = (values[handle]);
-    // });
 
     ccSlider.noUiSlider.on('update', function(values, handle) {
         ccInput.value = values[handle];
@@ -899,8 +811,7 @@ $scope.fundsOb = [
             });
         }
         changeCCLimit();
-        
-        // $scope.submitForm2(true);
+
     }
 
     retirementAgeInput.addEventListener("change", function() {
@@ -918,10 +829,6 @@ $scope.fundsOb = [
     superBalanceInput.addEventListener("change", function() {
         superBalanceSlider.noUiSlider.set($scope.superBalance);
     });
-
-    // rateOfReturnInput.addEventListener("change", function() {
-    //     rateOfReturnSlider.noUiSlider.set($scope.rateOfReturn);
-    // });
 
     inflationInput.addEventListener("change", function() {
         inflationSlider.noUiSlider.set($scope.inflation);
@@ -943,10 +850,6 @@ $scope.fundsOb = [
         annualFeeASlider.noUiSlider.set($scope.annualFeeA);
     });
 
-    // netReturnAInput.addEventListener("change", function() {
-    //     netReturnASlider.noUiSlider.set($scope.netReturnA);
-    // });
-
     annualFeeBInput.addEventListener("change", function() {
         annualFeeBSlider.noUiSlider.set($scope.annualFeeB);
     });
@@ -954,10 +857,6 @@ $scope.fundsOb = [
     netReturnInput.addEventListener("change", function() {
         netReturnSlider.noUiSlider.set($scope.netReturnB);
     });
-
-    // memberFeeInput.addEventListener("change", function() {
-    //     memberFeeSlider.noUiSlider.set($scope.memberFee);
-    // });
 
     ccInput.addEventListener("change", function() {
         ccSlider.noUiSlider.set($scope.cc);
@@ -970,7 +869,7 @@ $scope.fundsOb = [
     retirementAgeSlider.noUiSlider.on('set', function(values, handle) {
         retirementAgeInput.value = values[handle];
         $scope.retirementAge = (values[handle]);
-        calculateFinal();
+        // calculateFinal();
         $timeout(0);
     });
 
@@ -978,7 +877,7 @@ $scope.fundsOb = [
         annualSalaryInput.value = values[handle];
         $scope.annualSalary = (values[handle]);
         changeCCLimit();
-        calculateFinal();
+        // calculateFinal();
         $timeout(0);
     });
 
@@ -986,49 +885,42 @@ $scope.fundsOb = [
         employerContributionLevelInput.value = values[handle];
         $scope.employerContributionLevel = (values[handle]);
         changeCCLimit();
-        calculateFinal();
+        // calculateFinal();
         $timeout(0);
     });
 
     superBalanceSlider.noUiSlider.on('set', function(values, handle) {
         superBalanceInput.value = values[handle];
         $scope.superBalance = (values[handle]);
-        calculateFinal();
+        // calculateFinal();
         $timeout(0);
     });
-
-    // rateOfReturnSlider.noUiSlider.on('set', function(values, handle) {
-    //     rateOfReturnInput.value = values[handle];
-    //     $scope.rateOfReturn = (values[handle]);
-    //     // calculateFinal();
-    //     $timeout(0);
-    // });
 
     inflationSlider.noUiSlider.on('set', function(values, handle) {
         inflationInput.value = values[handle];
         $scope.inflation = (values[handle]);
-        calculateFinal();
+        // calculateFinal();
         $timeout(0);
     });
 
     wageIncreaseSlider.noUiSlider.on('set', function(values, handle) {
         wageIncreaseInput.value = values[handle];
         $scope.wageIncrease = (values[handle]);
-        calculateFinal();
+        // calculateFinal();
         $timeout(0);
     });
 
     insurancePremiumSlider.noUiSlider.on('set', function(values, handle) {
         insurancePremiumInput.value = values[handle];
         $scope.insurancePremium = (values[handle]);
-        calculateFinal();
+        // calculateFinal();
         $timeout(0);
     });
 
     superTaxRateSlider.noUiSlider.on('set', function(values, handle) {
         superTaxRateInput.value = values[handle];
         $scope.superTaxRate = (values[handle]);
-        calculateFinal();
+        // calculateFinal();
         $timeout(0);
     });
 
@@ -1036,23 +928,15 @@ $scope.fundsOb = [
         annualFeeAInput.value = values[handle];
         $scope.annualFeeA = (values[handle]);
         $scope.fundA.annualPercentageFee = Number($scope.annualFeeA.replaceAll('%', '')),
-            calculateFinal();
+            // calculateFinal();
         $timeout(0);
     });
-
-    // netReturnASlider.noUiSlider.on('set', function(values, handle) {
-    //     netReturnAInput.value = values[handle];
-    //     $scope.netReturnA = (values[handle]);
-    //     $scope.fundA.netReturn = Number($scope.netReturnA.replaceAll('%', '')),
-    //         calculateFinal();
-    //     $timeout(0);
-    // });
 
     annualFeeBSlider.noUiSlider.on('set', function(values, handle) {
         annualFeeBInput.value = values[handle];
         $scope.annualFeeB = (values[handle]);
         $scope.fundB.annualPercentageFee = Number($scope.annualFeeB.replaceAll('%', '')),
-            calculateFinal();
+            // calculateFinal();
         $timeout(0);
     });
 
@@ -1060,48 +944,36 @@ $scope.fundsOb = [
         netReturnInput.value = values[handle];
         $scope.netReturn = (values[handle]);
         // $scope.fundB.netReturn = Number($scope.netReturnB.replaceAll('%', '')),
-            calculateFinal();
+            // calculateFinal();
         $timeout(0);
     });
-
-    // memberFeeSlider.noUiSlider.on('set', function(values, handle) {
-    //     memberFeeInput.value = values[handle];
-    //     $scope.memberFee = (values[handle]);
-    //     // calculateFinal();
-    //     $timeout(0);
-    // });
 
     ccSlider.noUiSlider.on('set', function(values, handle) {
         ccInput.value = values[handle];
         $scope.cc = (values[handle]);
-        calculateFinal();
+        // calculateFinal();
         $timeout(0);
     });
 
     nccSlider.noUiSlider.on('set', function(values, handle) {
         nccInput.value = values[handle];
         $scope.ncc = (values[handle]);
-        calculateFinal();
+        // calculateFinal();
         $timeout(0);
     });
 
-    // var nameA = 
 
     document.getElementById('fundNameA').addEventListener("change", function() {
         $scope.fundA.name = document.getElementById('fundNameA').value;
-        calculateFinal();
+        // calculateFinal();
         $timeout(0);
     });
 
     document.getElementById('fundNameB').addEventListener("change", function() {
         $scope.fundB.name = document.getElementById('fundNameB').value;
-        calculateFinal();
+        // calculateFinal();
         $timeout(0);
     });
-
-    // $scope.fundNameChangeA = function(){
-
-    // }
 
     $timeout(function() {
         $('.selectpicker').selectpicker({
@@ -1154,7 +1026,7 @@ $scope.fundsOb = [
         selected1 = $('.sp1 option:selected').val();
         $scope.fundA = $scope.fundsOb[selected1];
         tempFundA = $scope.fundsOb[selected1];
-        calculateFinal();
+        // calculateFinal();
     });
 
     $('.sp2').on('change', function() {
@@ -1162,7 +1034,7 @@ $scope.fundsOb = [
         selected2 = $('.sp2 option:selected').val();
         $scope.fundB = $scope.fundsOb[selected2];
         tempFundB = $scope.fundsOb[selected2];
-        calculateFinal();
+        // calculateFinal();
     });
 
     changeCCLimit();
@@ -1268,7 +1140,7 @@ $scope.fundsOb = [
         } else {
             $scope.fundA = tempFundA;
         }
-        calculateFinal();
+        // calculateFinal();
     }
 
     $scope.fundNotFoundBChange=function(valueB){
@@ -1282,12 +1154,12 @@ $scope.fundsOb = [
         } else {
             $scope.fundB = tempFundB;
         }
-        calculateFinal();
+        // calculateFinal();
     }
 
-    function calculateFinal() {
+    $scope.calculateFinal = function(isValid){
 
-        $timeout(0);
+    	if(isValid){
 
         var netReturn = Number($scope.netReturn.replaceAll('%',''));
 
@@ -1306,16 +1178,18 @@ $scope.fundsOb = [
         ChartServiceHc.createChart("#container", Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)), false);
         ChartServiceHc.createChart("#containerR", Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)), false);
         DonutChartServiceHc.createChart(Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)));
+       }else{
+       	$("#myModal").modal('show');
+       }
 
     }
 
-     calculateFinal();
-
-
-
-
+    $scope.calculateFinal(true);
 
     document.getElementById("download").addEventListener("click", function() {
+
+    	if($scope.forms.ttrForm.$valid){
+
         var annualSalary = Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', ''));
 
         var superBalance = Number($scope.superBalance.replaceAll('$', '').replaceAll(',', ''));
@@ -1366,6 +1240,9 @@ $scope.fundsOb = [
 
 
         PdfMaker.createChart(personalDetails, assumptions, result);
+    }else{
+    	$("#myModal").modal('show');
+    }
     });
 
         document.getElementById("bar-chart").addEventListener("click",function(){
@@ -1384,8 +1261,9 @@ $scope.fundsOb = [
 
 
     $(".print-doc").on("click",printBothCharts);
-
+    
     function printBothCharts(){
+    	if($scope.forms.ttrForm.$valid){
             if($scope.chartOneOpen){
         document.getElementById("donutContainer").style.display = "block";
            window.print();
@@ -1398,6 +1276,9 @@ $scope.fundsOb = [
            setTimeout(function(){
             document.getElementById("container").style.display = "none";
          },100);
+       }
+       }else{
+       	$("#myModal").modal('show');
        }	
    };
 

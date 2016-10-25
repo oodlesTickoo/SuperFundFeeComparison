@@ -831,7 +831,7 @@ float:right;
 }
 
 .form-control{
-  width:114% !important;
+  width:100% !important;
 }
 .formC2{
   width:100% !important;
@@ -985,4 +985,48 @@ a:focus{
 
 option.done{
   display:none !important;
+}
+
+.form-group label{
+  font-weight:normal;
+}
+p.err-msg{
+  margin:5px 0 0;
+  color:darkolivegreen;
+}
+.calculate-btn,.calculate-btn:hover,.calculate-btn:focus{
+  background-color: #91B6BE !important;
+  border:none !important;
+  outline: none !important;
+  border-radius:0px; 
+}
+ul.modal-list{
+  list-style-type: upper-latin !important;
+  /*padding-left:20px !important;*/
+}
+ul.modal-list li{
+font-size:15px;
+}
+.modal-content .modal-header{
+  padding-top:10px;
+  padding-bottom:10px;
+}
+.modal-content{
+  color:darkolivegreen;
+}
+.modal-footer h5{
+  margin-top:0px;
+  margin-bottom: 0px;
+}
+.modal-content .modal-footer{
+  padding:18px 25px;
+}
+/*input {
+    background: white;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: inset 0 0 0px 9999px white;
+}*/
+input:-webkit-autofill {
+    -webkit-box-shadow: inset 0 0 0px 9999px white !important;
 }
