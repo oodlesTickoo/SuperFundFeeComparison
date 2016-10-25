@@ -94,7 +94,7 @@ app.service('PdfMaker', [function() {
                         postCode = "0" + extraDetails.postalCode
                     }
                     rows1.push(
-                        { "info": "Postal Code", "value": postCode }
+                        { "info": "Postal Code", "value": extraDetails.postalCode }
                     );
                 }
 
