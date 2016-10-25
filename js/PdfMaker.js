@@ -1,7 +1,17 @@
 app.service('PdfMaker', [function() {
 
     //this.createChart = function(dob,age,fy,cses,thp,resultWithoutSS,resultWithSS,needSS,optimisedSS,toggleNeeded){
-    this.createChart = function(personalDetails,assumptions,result){
+    this.createChart = function(extraDetails,personalDetails,assumptions,result){
+
+                function reduceToCapitalize(nameArr){
+            if(nameArr.length < 2){
+                var name = nameArr[0];
+           return name[0].toUpperCase() + name.slice(1); 
+            }
+           return nameArr.reduce(function(first,second){
+                return first[0].toUpperCase() + first.slice(1) + " " + second[0].toUpperCase() + second.slice(1)
+            })
+        }
 
         var cdob = personalDetails.dob.toString().split(" ")[1] + " " + personalDetails.dob.toString().split(" ")[2] + " " + personalDetails.dob.toString().split(" ")[3];
        
@@ -55,12 +65,38 @@ app.service('PdfMaker', [function() {
             { title: "Values", dataKey: "value" },
         ];
         var rows1 = [
+
+                    { "info": "Full Name", "value": reduceToCapitalize((extraDetails.firstName.trim() + " " + extraDetails.lastName.trim()).split(' ')) },
+                    { "info": "E-Mail", "value": extraDetails.email.trim() },
+                    { "info": "Mobile Number", "value": "0" + extraDetails.mobile},
             { "info": "Date Of Birth", "value": cdob},
             { "info": "Age", "value": personalDetails.age },
             { "info": "Annual Salary", "value": moneyFormat.to(personalDetails.annualSalary) },
             { "info": "Super Balance", "value": moneyFormat.to(personalDetails.superBalance) },
             { "info": "Retirement Age", "value": personalDetails.retirementAge },
         ];
+
+         if(extraDetails.address !== undefined && extraDetails.address.length !== 0){
+                    rows1.push(
+                        { "info": "Address", "value": reduceToCapitalize(extraDetails.address.trim().replaceAll('\n',' ').replace(/\s+/g, " ").split(" ")) }
+                    );
+                }
+
+                if(extraDetails.postalCode != undefined){
+                    var postCode;
+                    if(extraDetails.postalCode < 10){
+                        postCode = "000" + extraDetails.postalCode
+                    }
+                    if(extraDetails.postalCode >= 10 && extraDetails.postalCode < 100){
+                        postCode = "00" + extraDetails.postalCode
+                    }
+                    if(extraDetails.postalCode >= 100 && extraDetails.postalCode < 1000){
+                        postCode = "0" + extraDetails.postalCode
+                    }
+                    rows1.push(
+                        { "info": "Postal Code", "value": postCode }
+                    );
+                }
 
         var columns2 = [
             { title: "Assumptions", dataKey: "assume" },
@@ -116,18 +152,20 @@ app.service('PdfMaker', [function() {
         doc.autoTable(columns1, rows1, {
             margin: { top: 85 },
             styles:{
-              // fontSize:20,
+              overflow : 'linebreak',
             halign : "left",
             // columnWidth : 400
             },
             columnStyles:{
-            info: {columnWidth: 420},
-            value: {columnWidth: 97}
+            info: {columnWidth: 370},
+            value: {columnWidth: 147}
             },
         });
 
+        var top = doc.autoTableEndPosY();
+
         doc.autoTable(columns3, rows3, {
-            margin: { top: 235 },
+            margin: { top: top+30 },
             styles:{
               overflow : 'linebreak',
               // fontSize:20,
@@ -140,8 +178,10 @@ app.service('PdfMaker', [function() {
             },
         });
 
+        top = doc.autoTableEndPosY();
+
         doc.autoTable(columnsP2,[], {
-            margin: { top: 360 },
+            margin: { top: top + 30 },
             styles:{
               rowHeight:30,
               halign : 'left',
@@ -150,13 +190,15 @@ app.service('PdfMaker', [function() {
             }
         });
 
+        top = doc.autoTableEndPosY();
+
         var canvas = document.createElement("canvas");
 
         canvg(canvas, $('#containerR').highcharts().getSVG());
 
         var img = canvas.toDataURL("image/png");
 
-        doc.addImage(img, 'PNG', 150, 450);
+        doc.addImage(img, 'PNG', 150, top+30);
 
         doc.addImage(imgData2,'PNG',40,780);
         doc.setFontSize(10);

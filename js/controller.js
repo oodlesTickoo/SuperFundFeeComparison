@@ -1180,6 +1180,7 @@ $scope.fundsOb = [
         DonutChartServiceHc.createChart(Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)));
        }else{
        	$("#myModal").modal('show');
+       	$("html, body").animate({ scrollTop: 0 }, "slow");
        }
 
     }
@@ -1237,11 +1238,10 @@ $scope.fundsOb = [
             resultFundTwo: $scope.resultFundTwo,
             savings: $scope.savings
         }
-
-
-        PdfMaker.createChart(personalDetails, assumptions, result);
+        PdfMaker.createChart($scope.personalDetails,personalDetails, assumptions, result);
     }else{
     	$("#myModal").modal('show');
+    	$("html, body").animate({ scrollTop: 0 }, "slow");
     }
     });
 
@@ -1279,7 +1279,8 @@ $scope.fundsOb = [
        }
        }else{
        	$("#myModal").modal('show');
-       }	
+		$("html, body").animate({ scrollTop: 0 }, "slow");
+		}	
    };
 
 
