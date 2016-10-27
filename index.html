@@ -73,6 +73,21 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <!-- <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <textarea class="form-control" name="address" ng-model="personalDetails.address" id="address"></textarea>
+                                    </div>
+                                </div> -->
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="postal-code">Postal Code</label>
+                                        <input type="number" name="postalCode" ng-model="personalDetails.postalCode" class="form-control postal-code" id="postal-code" ng-minlength="4" ng-maxlength="4" onClick="this.select();">
+                                        <p class="err-msg" ng-show="!forms.ttrForm.postalCode.$pristine &&forms.ttrForm.postalCode.$invalid">Enter a valid 4-Digit postal code</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-xs-8 col-sm-4 form-heading">
                                     Date Of Birth
                                     <div class="row">
@@ -155,7 +170,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row second-row-mobile">
+                            <div class="row second-row-mobile"  style="padding-bottom:20px;">
                                 <div class="col-xs-12 col-sm-6 form-heading">
                                     Non Concessional Contribution
                                     <div class="row">
@@ -167,21 +182,6 @@
                                         <div class="col-xs-8 col-sm-8 form-group slider-common">
                                             <div id="nccSlider" style="margin-top:8px;"></div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="padding-bottom:20px;">
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <label for="address">Address</label>
-                                        <textarea class="form-control" name="address" ng-model="personalDetails.address" id="address"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <label for="postal-code">Postal Code</label>
-                                        <input type="number" name="postalCode" ng-model="personalDetails.postalCode" class="form-control postal-code" id="postal-code" ng-minlength="4" ng-maxlength="4" onClick="this.select();">
-                                        <p class="err-msg" ng-show="!forms.ttrForm.postalCode.$pristine &&forms.ttrForm.postalCode.$invalid">Enter a valid 4-Digit postal code</p>
                                     </div>
                                 </div>
                             </div>
