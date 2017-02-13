@@ -281,18 +281,11 @@
                                 </div>
                             </div>
                             <div class="row second-row-mobile">
-                                <div class="col-xs-12 col-sm-6 form-heading">
-                                    <h4>Net Return Rate For Comparison</h4>
-                                    <div class="row">
-                                        <div class="col-xs-4 col-sm-4">
-                                            <div class="form-group">
-                                                <input type="text" onClick="this.select();" class="form-control" id="netReturnInput" name="netReturnInput" ng-model="netReturn">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
-                                            <div id="netReturnSlider" style="margin-top:8px;"></div>
-                                        </div>
-                                    </div>
+                                <div class="col-lg-6 col-sm-6 col-md-6">
+                                    <h4 class="bold">Investment option</h4>
+                                    <select name="sp3" class="selectpicker sp3" id="sp3">
+                                        <option ng-repeat="x in investOptions" value="{{x.id}}">{{x.name}}</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row second-row-mobile">
@@ -318,15 +311,43 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 form-heading">
-                                    Annual Percentage Fee
+                                    Contribution Fee
                                     <div class="row">
                                         <div class="col-xs-4 col-sm-4">
                                             <div class="form-group">
-                                                <input type="text" onClick="this.select();" class="form-control" id="annualFeeAInput" name="annualFeeAInput" ng-model="annualFeeA">
+                                                <input type="text" onClick="this.select();" class="form-control" id="contributionFeeAInput" name="contributionFeeAInput" ng-model="contributionFeeA">
                                             </div>
                                         </div>
                                         <div class="col-xs-8 col-sm-8 form-group slider-common">
-                                            <div id="annualFeeASlider" style="margin-top:8px;"></div>
+                                            <div id="contributionFeeASlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile" ng-show="fundNotFoundA">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Admin fee
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <input type="text" onClick="this.select();" class="form-control" id="adminFeeAInput" name="adminFeeAInput" ng-model="adminFeeA">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <div id="adminFeeASlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Indirect cost ration
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <input type="text" onClick="this.select();" class="form-control" id="indirectCostRationAInput" name="indirectCostRationAInput" ng-model="indirectCostRationA">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <div id="indirectCostRationASlider" style="margin-top:8px;"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -354,15 +375,43 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 form-heading">
-                                    Annual Percentage Fee
+                                    Contribution Fee
                                     <div class="row">
                                         <div class="col-xs-4 col-sm-4">
                                             <div class="form-group">
-                                                <input type="text" onClick="this.select();" class="form-control" id="annualFeeBInput" name="annualFeeBInput" ng-model="annualFeeB">
+                                                <input type="text" onClick="this.select();" class="form-control" id="contributionFeeBInput" name="contributionFeeBInput" ng-model="contributionFeeB">
                                             </div>
                                         </div>
                                         <div class="col-xs-8 col-sm-8 form-group slider-common">
-                                            <div id="annualFeeBSlider" style="margin-top:8px;"></div>
+                                            <div id="contributionFeeBSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile" ng-show="fundNotFoundB">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Admin fee
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <input type="text" onClick="this.select();" class="form-control" id="adminFeeBInput" name="adminFeeBInput" ng-model="adminFeeB">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <div id="adminFeeBSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Indirect cost ration
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <input type="text" onClick="this.select();" class="form-control" id="indirectCostRationBInput" name="indirectCostRationBInput" ng-model="indirectCostRationB">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <div id="indirectCostRationBSlider" style="margin-top:8px;"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -392,15 +441,14 @@
                         <div class="row">
                             <div class="col-xs-12" id="chartBox">
                                 <div id="container" style="margin:0 auto;width: 327px; height: 365px;" ng-class="{largeWidth: needSS}"></div>
-                                <div id="containerR" style="display: none; margin:0 auto;width: 327px; height: 365px;" ng-class="{largeWidth: needSS}"></div>
-                                <div id="donutContainer" style="margin:0 auto;width: 327px; height: 365px; display:none" ng-class="{largeWidth: needSS}"></div>
+                                <div id="containerA" style="margin:0 auto;width: 327px; height: 365px; display:none" ng-class="{largeWidth: needSS}"></div>
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-5 col-md-5">
                         <div class="row res-2">
                             <div class="col-xs-12">
-                                <div class="row res-head"><strong>Discounted Super Balance</strong></div>
+                                <div class="row res-head"><strong>Projected Superannuation Balance</strong></div>
                                 <div class="row divider"></div>
                                 <div class="row dsb">
                                     <div class="col-xs-12 res-value2">{{fundA.name}}</div>
