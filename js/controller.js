@@ -320,6 +320,13 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
 
     $scope.personalDetails = {};
 
+    $scope.personalDetails = {
+        firstName: "Dexter",
+        lastName: "Payne",
+        email: "dexter@gmail.com",
+        mobile: 412121212,
+        postalCode: 1234
+    };
     $scope.fundA = $scope.fundsOb[0];
 
     $scope.fundB = $scope.fundsOb[1];
@@ -1077,7 +1084,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
         $timeout(0);
     });
 
-    /*
+    
         document.getElementById('fundNameA').addEventListener("change", function() {
             $scope.fundA.name = document.getElementById('fundNameA').value;
             // calculateFinal();
@@ -1089,7 +1096,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
             // calculateFinal();
             $timeout(0);
         });
-    */
+    
     $timeout(function() {
         $('.selectpicker').selectpicker({
             style: 'btn-info',
@@ -1260,6 +1267,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
     $scope.calculateFinal = function(isValid) {
 
         if (isValid) {
+            $timeout(0);
 
             var netReturn = $scope.netReturn;
 
