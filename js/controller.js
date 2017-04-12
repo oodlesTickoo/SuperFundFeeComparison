@@ -9,7 +9,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
         { id: 5, name: 'High Growth', netReturn: 6.60 }
     ];
 
-    $scope.fundsOb = [
+    /*$scope.fundsOb = [
         { id: 0, name: 'Asgard Infinity Ewrap Super', annualPercentageFee: 1.25 },
         { id: 1, name: 'ING Direct Living Super', annualPercentageFee: 0 },
         { id: 2, name: 'ING Direct Living Super (Balanced) with benefits', annualPercentageFee: 260 },
@@ -314,8 +314,66 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
         { id: 301, name: 'Anglican National ANS RIL Growth', annualPercentageFee: 1.09 },
         { id: 302, name: 'Aon High Growth', annualPercentageFee: 0.92 },
         { id: 303, name: 'Anglican National ANS RIL High Growth', annualPercentageFee: 1.19 }
+    ];*/
+
+    $scope.fundsOb = [{ id: 0, name: 'QSuper Lifetime Aspire 2 Group', annualPercentageFee: 0.61 },
+        { id: 1, name: ' QSuper Lifetime Aspire 1 Group', annualPercentageFee: 0.61 },
+        { id: 2, name: ' QSuper Lifetime Outlook', annualPercentageFee: 0.66 },
+        { id: 3, name: ' QSuper Lifetime Focus 1 Group', annualPercentageFee: 0.56 },
+        { id: 4, name: ' QSuper Lifetime Focus 2 Group', annualPercentageFee: 0.56 },
+        { id: 5, name: ' QSuper Lifetime Focus 3 Group', annualPercentageFee: 0.56 },
+        { id: 6, name: ' Building Unions super Scheme Queensland BUSSQ', annualPercentageFee: 1.24 },
+        { id: 7, name: ' Suncorp Funds 1995 - 1999', annualPercentageFee: 1.01 },
+        { id: 8, name: ' Suncorp Funds 1975 - 1979', annualPercentageFee: 1.01 },
+        { id: 9, name: ' Suncorp Funds 1990 - 1994', annualPercentageFee: 1.01 },
+        { id: 10, name: ' Suncorp Funds 2000 - 2004', annualPercentageFee: 1.01 },
+        { id: 11, name: ' Suncorp Funds 1980 - 1984', annualPercentageFee: 1.01 },
+        { id: 12, name: ' Suncorp Funds 1985 - 1989', annualPercentageFee: 1.01 },
+        { id: 13, name: ' Suncorp Funds 1970 - 1974', annualPercentageFee: 1.01 },
+        { id: 14, name: ' Suncorp Funds 1965 - 1969', annualPercentageFee: 1.01 },
+        { id: 15, name: ' Unisuper UniSuper Balanced', annualPercentageFee: 0.75 },
+        { id: 16, name: ' Suncorp Funds 1960 - 1964', annualPercentageFee: 1.01 },
+        { id: 17, name: ' MyLifeMyMoney super Fund MyCatholicSuper', annualPercentageFee: 1.04 },
+        { id: 18, name: ' Construction & Building Unions super Growth Cbus', annualPercentageFee: 0.97 },
+        { id: 19, name: ' Rei Super ee Balanced', annualPercentageFee: 0.85 },
+        { id: 20, name: ' Suncorp Funds 1955 - 1959', annualPercentageFee: 1.01 },
+        { id: 21, name: ' MTAA super Fund My AutoSuper', annualPercentageFee: 0.84 },
+        { id: 22, name: ' Suncorp Funds 1934 Prior', annualPercentageFee: 1.01 },
+        { id: 23, name: ' QSuper Lifetime Sustain Group 1', annualPercentageFee: 0.45 },
+        { id: 24, name: ' Suncorp Funds 1950 - 1954', annualPercentageFee: 1.01 },
+        { id: 25, name: ' Suncorp Funds 1935 - 1939', annualPercentageFee: 1.01 },
+        { id: 26, name: ' First Super', annualPercentageFee: 0.89 },
+        { id: 27, name: ' Suncorp Funds 1945 - 1949', annualPercentageFee: 1.01 },
+        { id: 28, name: ' Statewide super', annualPercentageFee: 0.9 },
+        { id: 29, name: ' Suncorp Funds 1940 - 1944', annualPercentageFee: 1.01 },
+        { id: 30, name: ' Pitcher Retirement Plan', annualPercentageFee: 1.96 },
+        { id: 31, name: ' HOSTPLUS super Fund Balanced', annualPercentageFee: 1.08 },
+        { id: 32, name: ' Energy Super', annualPercentageFee: 0.94 },
+        { id: 33, name: ' Westpac Mastertrust BT Business 1940 s', annualPercentageFee: 1.18 },
+        { id: 34, name: ' AustralianSuper', annualPercentageFee: 0.73 },
+        { id: 35, name: ' Bendigo Conservative Index Fund', annualPercentageFee: 0.61 },
+        { id: 36, name: ' ANZ Smart Choice SuperFor QBE 1950 s', annualPercentageFee: 0.54 },
+        { id: 37, name: ' AustralianSuper IBM Plan', annualPercentageFee: 0.85 },
+        { id: 38, name: ' Aon Defensive', annualPercentageFee: 0.92 },
+        { id: 39, name: ' AustralianSuper Komatsu Plan', annualPercentageFee: 0.87 },
+        { id: 40, name: ' ANZ Smart Choice Super 1950 s', annualPercentageFee: 0.6 },
+        { id: 41, name: ' Aon 66', annualPercentageFee: 0.92 },
+        { id: 42, name: ' Care Super CareSuper', annualPercentageFee: 1.21 },
+        { id: 43, name: ' Meat Industry Employees super Fund MIESF', annualPercentageFee: 0.62 },
+        { id: 44, name: ' Aon 65', annualPercentageFee: 0.92 },
+        { id: 45, name: ' IOOF Portfolio Service super Fund', annualPercentageFee: 1.08 },
+        { id: 46, name: ' Virgin Super Essentials Life Stage Tracker Balanced Over 60 S Mix', annualPercentageFee: 1.11 },
+        { id: 47, name: ' Aon 64', annualPercentageFee: 0.92 },
+        { id: 48, name: ' ANZ Smart Choice SuperFor QBE 1940 s', annualPercentageFee: 0.54 },
+        { id: 49, name: ' ANZ Smart Choice Super 1940 s', annualPercentageFee: 0.6 }
     ];
 
+
+    var ty = ["QSuper Lifetime Aspire 2 Group", " QSuper Lifetime Aspire 1 Group", " QSuper Lifetime Outlook", " QSuper Lifetime Focus 1 Group", " QSuper Lifetime Focus 2 Group", " QSuper Lifetime Focus 3 Group", " Building Unions super Scheme Queensland BUSSQ", " Suncorp Funds 1995 - 1999", " Suncorp Funds 1975 - 1979", " Suncorp Funds 1990 - 1994", " Suncorp Funds 2000 - 2004", " Suncorp Funds 1980 - 1984", " Suncorp Funds 1985 - 1989", " Suncorp Funds 1970 - 1974", " Suncorp Funds 1965 - 1969", " Unisuper UniSuper Balanced", " Suncorp Funds 1960 - 1964", " MyLifeMyMoney super Fund MyCatholicSuper", " Construction & Building Unions super Growth Cbus", " Rei Super ee Balanced", " Suncorp Funds 1955 - 1959", " MTAA super Fund My AutoSuper", " Suncorp Funds 1934 Prior", " QSuper Lifetime Sustain Group 1", " Suncorp Funds 1950 - 1954", " Suncorp Funds 1935 - 1939", " First Super", " Suncorp Funds 1945 - 1949", " Statewide super", " Suncorp Funds 1940 - 1944", " Pitcher Retirement Plan", " HOSTPLUS super Fund Balanced", " Energy Super", " Westpac Mastertrust BT Business 1940 s", " AustralianSuper", " Bendigo Conservative Index Fund", " ANZ Smart Choice SuperFor QBE 1950 s", " AustralianSuper IBM Plan", " Aon Defensive", " AustralianSuper Komatsu Plan", " ANZ Smart Choice Super 1950 s", " Aon 66", " Care Super CareSuper", " Meat Industry Employees super Fund MIESF", " Aon 65", " IOOF Portfolio Service super Fund", " Virgin Super Essentials Life Stage Tracker Balanced Over 60 S Mix", " Aon 64", " ANZ Smart Choice SuperFor QBE 1940 s", " ANZ Smart Choice Super 1940 s"];
+    var ty1 = [0.61, 0.61, 0.66, 0.56, 0.56, 0.56, 1.24, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 0.75, 1.01, 1.04, 0.97, 0.85, 1.01, 0.84, 1.01, 0.45, 1.01, 1.01, 0.89, 1.01, 0.90, 1.01, 1.96, 1.08, 0.94, 1.18, 0.73, 0.61, 0.54, 0.85, 0.92, 0.87, 0.60, 0.92, 1.21, 0.62, 0.92, 1.08, 1.11, 0.92, 0.54, 0.60];
+    for (i = 0; i < ty.length; i++) {
+        console.log("{ id:" + i + ", name: '" + ty[i] + "', annualPercentageFee: " + ty1[i] + "},");
+    }
     $scope.forms = {};
 
     $scope.personalDetails = {};
@@ -1084,19 +1142,19 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
         $timeout(0);
     });
 
-    
-        document.getElementById('fundNameA').addEventListener("change", function() {
-            $scope.fundA.name = document.getElementById('fundNameA').value;
-            // calculateFinal();
-            $timeout(0);
-        });
 
-        document.getElementById('fundNameB').addEventListener("change", function() {
-            $scope.fundB.name = document.getElementById('fundNameB').value;
-            // calculateFinal();
-            $timeout(0);
-        });
-    
+    document.getElementById('fundNameA').addEventListener("change", function() {
+        $scope.fundA.name = document.getElementById('fundNameA').value;
+        // calculateFinal();
+        $timeout(0);
+    });
+
+    document.getElementById('fundNameB').addEventListener("change", function() {
+        $scope.fundB.name = document.getElementById('fundNameB').value;
+        // calculateFinal();
+        $timeout(0);
+    });
+
     $timeout(function() {
         $('.selectpicker').selectpicker({
             style: 'btn-info',
@@ -1289,7 +1347,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
             }
 
             ChartServiceHc.createChart("#container", Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)), false, true, $scope.year);
-            ChartServiceHc.createChart("#containerA", $scope.resultFundOneArray, $scope.resultFundTwoArray,0, false, false, $scope.year);
+            ChartServiceHc.createChart("#containerA", $scope.resultFundOneArray, $scope.resultFundTwoArray, 0, false, false, $scope.year);
         } else {
             $("#myModal").modal('show');
             $("html, body").animate({ scrollTop: 0 }, "slow");
