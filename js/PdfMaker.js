@@ -190,11 +190,19 @@ app.service('PdfMaker', [function() {
 
         var canvas = document.createElement("canvas");
 
-        canvg(canvas, $('#containerR').highcharts().getSVG());
+        canvg(canvas, $('#containerA').highcharts().getSVG());
 
         var img = canvas.toDataURL("image/png");
 
-        doc.addImage(img, 'PNG', 150, top + 30);
+        doc.addImage(img, 'PNG', 300, top + 30);
+
+        var canvas = document.createElement("canvas");
+
+        canvg(canvas, $('#container').highcharts().getSVG());
+
+        var img = canvas.toDataURL("image/png");
+
+        doc.addImage(img, 'PNG', 30, top + 30);
 
         doc.addImage(imgData2, 'PNG', 40, 780);
         doc.setFontSize(10);

@@ -369,11 +369,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
     ];
 
 
-    var ty = ["QSuper Lifetime Aspire 2 Group", " QSuper Lifetime Aspire 1 Group", " QSuper Lifetime Outlook", " QSuper Lifetime Focus 1 Group", " QSuper Lifetime Focus 2 Group", " QSuper Lifetime Focus 3 Group", " Building Unions super Scheme Queensland BUSSQ", " Suncorp Funds 1995 - 1999", " Suncorp Funds 1975 - 1979", " Suncorp Funds 1990 - 1994", " Suncorp Funds 2000 - 2004", " Suncorp Funds 1980 - 1984", " Suncorp Funds 1985 - 1989", " Suncorp Funds 1970 - 1974", " Suncorp Funds 1965 - 1969", " Unisuper UniSuper Balanced", " Suncorp Funds 1960 - 1964", " MyLifeMyMoney super Fund MyCatholicSuper", " Construction & Building Unions super Growth Cbus", " Rei Super ee Balanced", " Suncorp Funds 1955 - 1959", " MTAA super Fund My AutoSuper", " Suncorp Funds 1934 Prior", " QSuper Lifetime Sustain Group 1", " Suncorp Funds 1950 - 1954", " Suncorp Funds 1935 - 1939", " First Super", " Suncorp Funds 1945 - 1949", " Statewide super", " Suncorp Funds 1940 - 1944", " Pitcher Retirement Plan", " HOSTPLUS super Fund Balanced", " Energy Super", " Westpac Mastertrust BT Business 1940 s", " AustralianSuper", " Bendigo Conservative Index Fund", " ANZ Smart Choice SuperFor QBE 1950 s", " AustralianSuper IBM Plan", " Aon Defensive", " AustralianSuper Komatsu Plan", " ANZ Smart Choice Super 1950 s", " Aon 66", " Care Super CareSuper", " Meat Industry Employees super Fund MIESF", " Aon 65", " IOOF Portfolio Service super Fund", " Virgin Super Essentials Life Stage Tracker Balanced Over 60 S Mix", " Aon 64", " ANZ Smart Choice SuperFor QBE 1940 s", " ANZ Smart Choice Super 1940 s"];
-    var ty1 = [0.61, 0.61, 0.66, 0.56, 0.56, 0.56, 1.24, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 1.01, 0.75, 1.01, 1.04, 0.97, 0.85, 1.01, 0.84, 1.01, 0.45, 1.01, 1.01, 0.89, 1.01, 0.90, 1.01, 1.96, 1.08, 0.94, 1.18, 0.73, 0.61, 0.54, 0.85, 0.92, 0.87, 0.60, 0.92, 1.21, 0.62, 0.92, 1.08, 1.11, 0.92, 0.54, 0.60];
-    for (i = 0; i < ty.length; i++) {
-        console.log("{ id:" + i + ", name: '" + ty[i] + "', annualPercentageFee: " + ty1[i] + "},");
-    }
+ 
     $scope.forms = {};
 
     $scope.personalDetails = {};
