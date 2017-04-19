@@ -266,21 +266,38 @@
                                 <span class="title-wrapper">Compare funds</span>
                                 <div class="otrp-clear"></div>
                             </div>
-                            <div class="row first-row-mobile" id="datebox">
+                            
+                            <div class="row " id="datebox">
                                 <div class="col-lg-6 col-sm-6 col-md-6">
-                                    <h4 class="bold">Fund A</h4>
-                                    <select name="sp1" class="selectpicker sp1" id="sp1">
-                                        <option ng-repeat="x in fundsOb" value="{{x.id}}">{{x.name}}</option>
+                                    <h3 class="bold" style="    font-weight: bold;    margin-bottom: 15px;">Fund A</h3>
+                                    <h5 class="bold">Fund Type</h5>
+                                    <select name="sp1" class="selectpicker sp4" id="sp4">
+                                        <option ng-repeat="x in fundTypeA" value="{{x.id}}">{{x.name}}</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-md-6">
-                                    <h4 class="bold">Fund B</h4>
-                                    <select name="sp2" class="selectpicker sp2">
-                                        <option ng-repeat="x in fundsOb" value="{{x.id}}">{{x.name}}</option>
+                                    <h3 class="bold" style="    font-weight: bold;    margin-bottom: 15px;">Fund B</h3>
+                                    <h5 class="bold">Fund Type</h5>
+                                    <select name="sp2" class="selectpicker sp5" id="sp5">
+                                        <option ng-repeat="x in fundTypeB" value="{{x.id}}">{{x.name}}</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="row second-row-mobile">
+                            <div class="row" id="datebox">
+                                <div class="col-lg-6 col-sm-6 col-md-6">
+                                    <h5 class="bold">Fund List</h5>
+                                    <select name="sp1" class="selectpicker sp1" id="sp1">
+                                        <option ng-repeat="x in fundsOb1" value="{{x.id}}">{{x.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6 col-sm-6 col-md-6">
+                                    <h5 class="bold">Fund List</h5>
+                                    <select name="sp2" class="selectpicker sp2">
+                                        <option ng-repeat="x in fundsOb2" value="{{x.id}}">{{x.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-lg-6 col-sm-6 col-md-6">
                                     <h4 class="bold">Investment option</h4>
                                     <select name="sp3" class="selectpicker sp3" id="sp3">
@@ -288,18 +305,11 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="row second-row-mobile">
-                                <div class="col-xs-12 col-sm-6 form-heading">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            Specify another Fund A?
-                                            <button class="option-l-btn btn btn-primary " ng-click="fundNotFoundAChange(true)" ng-disabled="fundNotFoundA">Yes</button>
-                                            <button class="option-r-btn btn btn-primary " ng-click="fundNotFoundAChange(false)" ng-disabled="!fundNotFoundA">No</button>
-                                        </div>
-                                    </div>
+                            
+                            <div class="row " ng-show="fundNotFoundA">
+                                <div class="col-xs-12 col-sm-12 form-heading">
+                                    <h4>Fund A</h4>
                                 </div>
-                            </div>
-                            <div class="row second-row-mobile" ng-show="fundNotFoundA">
                                 <div class="col-xs-12 col-sm-6 form-heading">
                                     Add the name of your fund here
                                     <div class="row">
@@ -324,7 +334,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row second-row-mobile" ng-show="fundNotFoundA">
+                            <div class="row " ng-show="fundNotFoundA">
                                 <div class="col-xs-12 col-sm-6 form-heading">
                                     Admin fee
                                     <div class="row">
@@ -352,18 +362,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row second-row-mobile">
-                                <div class="col-xs-12 col-sm-6 form-heading">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            Specify another Fund B?
-                                            <button class="option-l-btn btn btn-primary " ng-click="fundNotFoundBChange(true)" ng-disabled="fundNotFoundB">Yes</button>
-                                            <button class="option-r-btn btn btn-primary " ng-click="fundNotFoundBChange(false)" ng-disabled="!fundNotFoundB">No</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <div class="row second-row-mobile" ng-show="fundNotFoundB">
+                                
+                                <div class="col-xs-12 col-sm-12 form-heading">
+                                    <h4>Fund B</h4>
+                                </div>
                                 <div class="col-xs-12 col-sm-6 form-heading">
                                     Add the name of your fund here
                                     <div class="row">
@@ -388,7 +392,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row second-row-mobile" ng-show="fundNotFoundB">
+                            <div class="row " ng-show="fundNotFoundB">
                                 <div class="col-xs-12 col-sm-6 form-heading">
                                     Admin fee
                                     <div class="row">
