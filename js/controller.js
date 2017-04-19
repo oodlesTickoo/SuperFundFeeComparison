@@ -1518,7 +1518,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
             $scope.fundNotFoundA = false;
             $scope.fundA = $scope.fundsOb[selected1];
         }
-        console.log("$scope.fundA", $scope.fundA);
+        // console.log("$scope.fundA", $scope.fundA);
         $timeout(0);
     }
 
@@ -1546,7 +1546,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
             $scope.fundNotFoundB = false;
             $scope.fundB = $scope.fundsOb[selected2];
         }
-        console.log("$scope.fundB", $scope.fundB);
+        // console.log("$scope.fundB", $scope.fundB);
         $timeout(0);
     }
 
@@ -1577,7 +1577,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
                 });
                 break;
         };
-        console.log("sel", $scope.fundsOb1);
+        // console.log("sel", $scope.fundsOb1);
         $('.sp1').selectpicker('refresh');
         $timeout(0);
     }
@@ -1602,7 +1602,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
                 });
                 break;
         };
-        console.log("sel", $scope.fundsOb2);
+        // console.log("sel", $scope.fundsOb2);
         $('.sp2').selectpicker('refresh');
         $timeout(0);
     }
@@ -1665,8 +1665,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
         ageL = $scope.age;
         var balanceArray = [superBalance];
         var biArray = [];
-        console.log("fundFound",fundFound);
-        console.log("fundFee",fundFee);
+        /*console.log("fundFound",fundFound);
+        console.log("fundFee",fundFee);*/
         for (count = 0; count <= yearLimit; count++) {
             cpi = Math.pow(1 + (inflation / 100), $scope.year);
             adjustedSalary = annualSalary * Math.pow(1 + (wageIncrease / 100), $scope.year);
@@ -1721,8 +1721,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
             $scope.resultFundOneArray = fundCalculation(netReturn, $scope.fundA, selected1)[0];
             $scope.resultFundTwoArray = fundCalculation(netReturn, $scope.fundB, selected2)[0];
 
-            console.log("resultFundOne", $scope.resultFundOne);
-            console.log("resultFundTwo", $scope.resultFundTwo);
+            /*console.log("resultFundOne", $scope.resultFundOne);
+            console.log("resultFundTwo", $scope.resultFundTwo);*/
 
             if ($scope.resultFundTwo > $scope.resultFundOne) {
                 $scope.savings = $scope.resultFundTwo - $scope.resultFundOne;
