@@ -1680,9 +1680,6 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
             adjustedSalary = annualSalary * Math.pow(1 + (wageIncrease / 100), $scope.year);
             netContribution = (adjustedSalary * employerContributionLevel / 100 + cc) * (1 - superTaxRate / 100) + ncc;
             earnings = balanceArray[count] * (Math.pow(1 + (fundReturn / 100), 0.5) - 1) + ((balanceArray[count] * Math.pow(1 + (fundReturn / 100), 0.5) + netContribution) * (Math.pow(1 + (fundReturn / 100), 0.5) - 1));
-            if (count<2) {
-                console.log();
-            } 
             if (fundFee.annualPercentageFee > 100) {
                 fees = fundFee.annualPercentageFee;
             } else {
@@ -1699,28 +1696,13 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
             balanceCpi = 1 / cpi;
             balanceIndexed = balance * balanceCpi;
             balanceArray.push(balance);
-            cpiArray.push(cpi);
-            adjustedSalaryArray.push(adjustedSalary);
-            netContributionArray.push(netContribution);
-            earningsArray.push(earnings);
-            feesArray.push(fees);
-            taxArray.push(tax);
-            balanceCpiArray.push(balanceCpi);
-            balanceIndexedArray.push(balanceIndexed);
+
             biArray.push(balanceIndexed);
             $scope.year++;
 
         }
 
-        console.log("cpiArray",cpiArray);
-        console.log("adjustedSalaryArray",adjustedSalaryArray);
-        console.log("netContributionArray",netContributionArray);
-        console.log("earningsArray",earningsArray);
-        console.log("feesArray",feesArray);
-        console.log("taxArray",taxArray);
-        console.log("balanceArray",balanceArray);
-        console.log("balanceCpiArray",balanceCpiArray);
-        console.log("balanceIndexedArray",balanceIndexedArray);
+
         return [biArray, biArray.slice(-1)[0]];
     }
 
