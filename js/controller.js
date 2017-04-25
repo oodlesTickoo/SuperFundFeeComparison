@@ -1553,7 +1553,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
     function sp3Change() {
         selected3 = $('.sp3 option:selected').val();
         //console.log("selected2",selected2);
-        $scope.netReturn = $scope.investOptions[selected3];
+        $scope.netReturn = $scope.investOptions[selected3].netReturn;
         //console.log("$scope.netReturn",$scope.netReturn);
     }
 
@@ -1664,6 +1664,14 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
         var count = 0;
         ageL = $scope.age;
         var balanceArray = [superBalance];
+        var cpiArray=[];
+        var adjustedSalaryArray=[];
+        var netContributionArray=[];
+        var earningsArray=[];
+        var feesArray=[];
+        var taxArray=[];
+        var balanceCpiArray=[];
+        var balanceIndexedArray=[];
         var biArray = [];
         /*console.log("fundFound",fundFound);
         console.log("fundFee",fundFee);*/
@@ -1672,13 +1680,15 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
             adjustedSalary = annualSalary * Math.pow(1 + (wageIncrease / 100), $scope.year);
             netContribution = (adjustedSalary * employerContributionLevel / 100 + cc) * (1 - superTaxRate / 100) + ncc;
             earnings = balanceArray[count] * (Math.pow(1 + (fundReturn / 100), 0.5) - 1) + ((balanceArray[count] * Math.pow(1 + (fundReturn / 100), 0.5) + netContribution) * (Math.pow(1 + (fundReturn / 100), 0.5) - 1));
-
+            if (count<2) {
+                console.log();
+            } 
             if (fundFee.annualPercentageFee > 100) {
                 fees = fundFee.annualPercentageFee;
             } else {
 
                 if (fundFound<307) {
-                    fees = balanceArray[count] * (fundFee.annualPercentageFee / 100);
+                    fees = balanceArray[count] * (fundFee.annualPercentageFee );
                 } else {
                     fees = (balanceArray[count] * ((fundFee.annualPercentageFee / 100) + (fundFee.indirectCostRation / 100))) + fundFee.adminFee;
                 }
@@ -1689,10 +1699,28 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
             balanceCpi = 1 / cpi;
             balanceIndexed = balance * balanceCpi;
             balanceArray.push(balance);
+            cpiArray.push(cpi);
+            adjustedSalaryArray.push(adjustedSalary);
+            netContributionArray.push(netContribution);
+            earningsArray.push(earnings);
+            feesArray.push(fees);
+            taxArray.push(tax);
+            balanceCpiArray.push(balanceCpi);
+            balanceIndexedArray.push(balanceIndexed);
             biArray.push(balanceIndexed);
             $scope.year++;
 
         }
+
+        console.log("cpiArray",cpiArray);
+        console.log("adjustedSalaryArray",adjustedSalaryArray);
+        console.log("netContributionArray",netContributionArray);
+        console.log("earningsArray",earningsArray);
+        console.log("feesArray",feesArray);
+        console.log("taxArray",taxArray);
+        console.log("balanceArray",balanceArray);
+        console.log("balanceCpiArray",balanceCpiArray);
+        console.log("balanceIndexedArray",balanceIndexedArray);
         return [biArray, biArray.slice(-1)[0]];
     }
 
@@ -1705,7 +1733,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
             $timeout(0);
 
 
-            if ($scope.ut == true) {
+            if ($scope.ut) {
                 $scope.ut = false;
             } else {
                 sp1Change();
@@ -1724,6 +1752,9 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
             /*console.log("resultFundOne", $scope.resultFundOne);
             console.log("resultFundTwo", $scope.resultFundTwo);*/
 
+            $scope.finalFundA=$scope.fundA;
+            $scope.finalFundB=$scope.fundB;
+
             if ($scope.resultFundTwo > $scope.resultFundOne) {
                 $scope.savings = $scope.resultFundTwo - $scope.resultFundOne;
                 $scope.savingsName = $scope.fundB.name;
@@ -1739,7 +1770,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
             $("html, body").animate({ scrollTop: 0 }, "slow");
         }
 
-    }
+    };
 
     $scope.calculateFinal(true);
 
@@ -1777,7 +1808,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
                 retirementAge: retirementAge,
                 cc: cc,
                 ncc: ncc
-            }
+            };
 
             var assumptions = {
                 ecLevel: employerContributionLevel,
@@ -1785,7 +1816,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
                 inflation: inflation,
                 wageIncrease: wageIncrease,
                 insurancePremium: insurancePremium
-            }
+            };
 
             var result = {
                 fundA: $scope.fundA,
@@ -1793,7 +1824,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
                 resultFundOne: $scope.resultFundOne,
                 resultFundTwo: $scope.resultFundTwo,
                 savings: $scope.savings
-            }
+            };
             PdfMaker.createChart($scope.personalDetails, personalDetails, assumptions, result);
         } else {
             $("#myModal").modal('show');
@@ -1837,7 +1868,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
             $("#myModal").modal('show');
             $("html, body").animate({ scrollTop: 0 }, "slow");
         }
-    };
+    }
 
 
 }]);
