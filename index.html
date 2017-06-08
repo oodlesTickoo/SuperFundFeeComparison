@@ -24,9 +24,9 @@
                 <h1>Super Fund Fee Comparison</h1>
             </div>
             <div print-hide class=" button-wrapper col-xs-4 col-sm-3 col-md-3">
-                <button type="button" class="buttons button print-icon print-doc"></button>
-                <button type="button" class="buttons button save-button" id="download" title="Save as PDF" role="button" aria-controls="email-overlay"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-                <button type="button" class="buttons button info-icon" ng-click="infoShow(true)" title="Information"></button>
+              <button type="button" title="print" class="new-btn btn-prnt print-doc"></button>
+<button type="button" class="new-btn btn-sav " id="download" title="Save as PDF" role="button" aria-controls="email-overlay"></button>
+<button type="button" class="new-btn btn-info " ng-click="infoShow(true)" title="Information"></button>
             </div>
         </div>
         <div class="row content">
@@ -34,11 +34,11 @@
                 <div class="row input-div">
                     <div class="col-xs-12 col-sm-12 col-lg-12">
                         <div class="row title-div">
-                            <span class="number-wrapper">1</span>
+                            <span class="number-wrapper"><strong>01</strong></span>
                             <span class="title-wrapper">Your Details</span>
                             <div class="otrp-clear"></div>
                         </div>
-                        <form name="forms.ttrForm" class="ttr-form" novalidate 
+                        <form name="forms.ttrForm" class="ttr-form" novalidate
                         ng-submit="calculateFinal(forms.ttrForm.$valid)">
                             <div class="row">
                                 <div class="col-xs-6">
@@ -186,7 +186,7 @@
                                 </div>
                             </div>
                             <div class="row title-div">
-                                <span class="number-wrapper">2</span>
+                                <span class="number-wrapper"><strong>02</strong></span>
                                 <span class="title-wrapper">Assumptions</span>
                                 <div class="otrp-clear"></div>
                             </div>
@@ -262,11 +262,11 @@
                                 </div>
                             </div>
                             <div class="row title-div">
-                                <span class="number-wrapper">3</span>
+                                <span class="number-wrapper"><strong>03</strong></span>
                                 <span class="title-wrapper">Compare funds</span>
                                 <div class="otrp-clear"></div>
                             </div>
-                            
+
                             <div class="row " id="datebox">
                                 <div class="col-lg-6 col-sm-6 col-md-6">
                                     <h3 class="bold" style="    font-weight: bold;    margin-bottom: 15px;">Fund A</h3>
@@ -305,7 +305,7 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                             <div class="row " ng-show="fundNotFoundA">
                                 <div class="col-xs-12 col-sm-12 form-heading">
                                     <h4>Fund A</h4>
@@ -362,9 +362,9 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="row second-row-mobile" ng-show="fundNotFoundB">
-                                
+
                                 <div class="col-xs-12 col-sm-12 form-heading">
                                     <h4>Fund B</h4>
                                 </div>
@@ -422,30 +422,34 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <button print-remove class="btn btn-block btn-primary calculate-btn" type="submit" style="width:initial ; margin:0 auto; margin-bottom:10px;">Calculate Result</button>
+                                    <button print-remove class="btn btn-block btn-primary calculate-btn btn-calculate " type="submit">Calculate Result</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div class="row result-head">
+                <div class="row result-head clearfix">
                     <h3 class="results-title">Your Results</h3>
+                    <button class="btn btn-primary print-dup print-doc btn-secdry" style="float:right; background-color:#0d2f47;" print-remove>
+
+                      <i class="fa fa-print" aria-hidden="true"></i>
+                        Print Result
+                    </button>
                 </div>
+
                 <div class="row result-div secondChart">
                     <div class="col-xs-12 col-sm-7 col-md-7">
                         <div class="row chart-buttons-row" print-remove>
                             <div class="col-xs-12 col-sm-12 col-md-12">
-                                <button class="btn btn-primary" id="bar-chart" title="bar chart description" ng-disabled="chartOneOpen"><i class="fa fa-bar-chart"></i></button>
-                                <button class="btn btn-primary" id="donut-chart" title="pie chart description" ng-disabled="!chartOneOpen"><i class="fa fa-pie-chart"></i></button>
-                                <button class="btn btn-primary print-dup print-doc" print-remove style="float:right">
-                                    Print Result
-                                </button>
+                                <button class="btn btn-primary hideIt" id="bar-chart" title="bar chart description" ng-disabled="chartOneOpen"><i class="fa fa-bar-chart"></i></button>
+                                <button class="btn btn-primary hideIt" id="donut-chart" title="pie chart description" ng-disabled="!chartOneOpen"><i class="fa fa-pie-chart"></i></button>
+
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12" id="chartBox">
                                 <div id="container" style="margin:0 auto;width: 327px; height: 365px;" ng-class="{largeWidth: needSS}"></div>
-                                <div id="containerA" style="margin:0 auto;width: 327px; height: 365px; display:none" ng-class="{largeWidth: needSS}"></div>
+                                <!--<div id="containerA" style="margin:0 auto;width: 327px; height: 365px; display:none" ng-class="{largeWidth: needSS}"></div>-->
                             </div>
                         </div>
                     </div>
@@ -606,6 +610,7 @@
     <script src="js/wNumb.js" type="text/javascript"></script>
     <script src="bower_components/angularPrint/angularPrint.js" type="text/javascript"></script>
     <script src="js/hc/highcharts.js" type="text/javascript"></script>
+    <script src="js/hc/highcharts-3d.js" type="text/javascript"></script>
     <script src="js/hc/data.js" type="text/javascript"></script>
     <script src="js/hc/exporting.js" type="text/javascript"></script>
     <script src="js/hc/sand-signika.js" type="text/javascript"></script>

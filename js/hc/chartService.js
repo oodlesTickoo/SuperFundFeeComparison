@@ -29,11 +29,19 @@ app.service('ChartServiceHc', function() {
         if (chartOne) {
             $(container).highcharts({
                 chart: {
-                    type: 'column'
+                    type: 'column',
+                    options3d: {
+              enabled: true,
+                 alpha: 7,
+                 beta: 18,
+                 depth: 47,
+                 viewDistance: 25
+   }
                 },
                 title: {
                     text: 'Fund Fee Comparison'
                 },
+                colors: ['#071520', '#0d2f47', '#195c8d', '#1a74b7', '#2599f0'],
                 exporting: {
                     enabled: false
                 },
@@ -44,7 +52,8 @@ app.service('ChartServiceHc', function() {
                     type: 'category',
                     labels: {
                         autoRotation: false,
-                    }
+                    },
+                    gridLineColor: 'transparent'
                 },
                 yAxis: {
                     title: {
